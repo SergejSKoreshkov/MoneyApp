@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <v-container>
     <v-card class="pa-4">
       <v-row class="text-center">
         <v-col v-for="item in paymentMethods" :key="item.text" cols="12">
@@ -19,7 +19,7 @@
         </v-col>
       </v-row>
     </v-card>
-  </div>
+  </v-container>
 </template>
 
 <script>

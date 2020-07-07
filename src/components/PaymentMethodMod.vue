@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <v-container>
         <ConfirmModal
         :show="showPDM"
         title="Test"
@@ -30,7 +30,7 @@
                 :callbackEdit="showPaymentDeleteModal"
             />
         </v-card>
-    </div>
+    </v-container>
 </template>
 
 <script>
