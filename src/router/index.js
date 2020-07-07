@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Main from '../views/Main.vue'
 import Categories from '../views/Categories.vue'
+import Payments from '../views/Payments.vue'
 
 Vue.use(VueRouter)
 
@@ -10,6 +11,11 @@ const routes = [
     path: '/',
     name: 'Main',
     component: Main
+  },
+  {
+    path: '/payments',
+    name: 'Payments',
+    component: Payments
   },
   {
     path: '/categories',

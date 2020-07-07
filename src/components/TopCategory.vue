@@ -21,7 +21,7 @@
                 :last="2.09"
             />
             <v-col>
-                <v-btn class="w100" @click="$router.push('/categories')">
+                <v-btn text class="w100" @click="$router.push('/categories')">
                     <v-icon class="mr-4">mdi-playlist-edit</v-icon>
                     <span class="mr-4">Manage categories</span>
                 </v-btn>

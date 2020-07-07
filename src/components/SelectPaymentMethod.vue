@@ -2,28 +2,32 @@
   <v-container>
     <v-card class="pa-4">
       <v-row class="text-center">
-        <v-col v-for="item in paymentMethods" :key="item.text" cols="6">
-          <v-card>
-            <v-card-title class="d-block">1000.00$</v-card-title>
-            <v-card-subtitle class="d-block">
-              <span>{{ item.name }}</span>
-            </v-card-subtitle>
-            <v-card-actions class="d-flex justify-center">
-              <v-btn class="w45 h50 green--text text--accent-4" outlined>
-                <v-icon>mdi-plus</v-icon>
-              </v-btn>
-              <v-btn class="w45 h50 deep-orange--text text--accent-4" outlined>
-                <v-icon>mdi-minus</v-icon>
-              </v-btn>
-            </v-card-actions>
+        <v-col v-for="item in paymentMethods" :key="item.text" cols="12">
+          <v-card flat>
+              <v-list-item>
+              <v-list-item-avatar>
+                  <v-icon :class="`${item.color}--text`">{{ item.icon }}</v-icon>
+              </v-list-item-avatar>
+              <v-list-item-content>
+                  <v-list-item-subtitle>{{ item.name }}</v-list-item-subtitle>
+                  <v-list-item-title>1000.00$</v-list-item-title>
+              </v-list-item-content>
+              <v-spacer></v-spacer>
+              <v-list-item-action>
+                  <v-btn outlined :class="`${item.color}--text`">
+                    <v-icon>mdi-plus</v-icon>
+                  </v-btn>
+              </v-list-item-action>
+              </v-list-item>
           </v-card>
+          <v-divider></v-divider>
         </v-col>
       </v-row>
       <v-row>
         <v-col>
-          <v-btn class="w100">
-            <v-icon class="mr-4">mdi-bank-plus</v-icon>
-            <span class="mr-4">Add new payment method</span>
+          <v-btn text class="w100" @click="$router.push('/payments')">
+            <v-icon class="mr-4">mdi-bank</v-icon>
+            <span class="mr-4">Manage payment methods</span>
           </v-btn>
         </v-col>
       </v-row>
@@ -37,10 +41,10 @@ export default {
   data () {
     return {
       paymentMethods: [
-        { name: 'Cash', icon: 'mdi-currency-usd' },
-        { name: 'Swedbank', icon: 'mdi-plus' },
-        { name: 'Revolut', icon: 'mdi-plus' },
-        { name: 'Stocks', icon: 'mdi-plus' }
+        { name: 'Cash', icon: 'mdi-currency-usd', color: 'green' },
+        { name: 'Swedbank', icon: 'mdi-credit-card', color: 'orange' },
+        { name: 'Revolut', icon: 'mdi-power-socket-eu', color: 'indigo' },
+        { name: 'Stocks', icon: 'mdi-plus', color: 'amber' }
       ]
     }
   }
