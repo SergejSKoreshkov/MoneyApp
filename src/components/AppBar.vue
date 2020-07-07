@@ -1,5 +1,5 @@
 <template>
-    <div class="app-bar">
+    <div>
         <v-app-bar>
             <v-app-bar-nav-icon @click="show = !show"></v-app-bar-nav-icon>
         </v-app-bar>
@@ -56,7 +56,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-    .app-bar {
-        z-index: 999;
+    .v-navigation-drawer {
+        z-index: 999 !important;
     }
 </style>
