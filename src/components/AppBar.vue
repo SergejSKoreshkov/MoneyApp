@@ -57,7 +57,6 @@ export default {
 
 <style lang="less" scoped>
     .app-bar {
-        position: relative;
         z-index: 999;
     }
 </style>

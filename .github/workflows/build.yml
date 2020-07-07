@@ -22,4 +22,4 @@ jobs:
 
     # Runs a single command using the runners shell
     - name: Build
-      run: yarn && yarn build --dest docs
+      run: yarn && yarn build
