@@ -15,7 +15,6 @@
             </v-list-item-action>
             </v-list-item>
         </v-card>
-        <v-divider></v-divider>
     </v-container>
 </template>
 
