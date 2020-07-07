@@ -16,7 +16,7 @@ export default {
     AppBar
   },
   mounted () {
-    this.$vuetify.theme.dark = false
+    this.$vuetify.theme.dark = true
   }
 }
 </script>
