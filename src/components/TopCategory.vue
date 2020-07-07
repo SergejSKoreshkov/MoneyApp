@@ -1,5 +1,5 @@
 <template>
-    <v-container>
+    <div>
         <v-card>
             <v-card-title>Top category</v-card-title>
             <CategoryItem
@@ -27,7 +27,7 @@
                 </v-btn>
             </v-col>
         </v-card>
-    </v-container>
+    </div>
 </template>
 
 <script>

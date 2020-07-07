@@ -1,26 +1,13 @@
 <template>
-  <v-container>
+  <div>
     <v-card class="pa-4">
       <v-row class="text-center">
         <v-col v-for="item in paymentMethods" :key="item.text" cols="12">
-          <v-card flat>
-              <v-list-item>
-              <v-list-item-avatar>
-                  <v-icon :class="`${item.color}--text`">{{ item.icon }}</v-icon>
-              </v-list-item-avatar>
-              <v-list-item-content>
-                  <v-list-item-subtitle>{{ item.name }}</v-list-item-subtitle>
-                  <v-list-item-title>1000.00$</v-list-item-title>
-              </v-list-item-content>
-              <v-spacer></v-spacer>
-              <v-list-item-action>
-                  <v-btn outlined :class="`${item.color}--text`">
-                    <v-icon>mdi-plus</v-icon>
-                  </v-btn>
-              </v-list-item-action>
-              </v-list-item>
-          </v-card>
-          <v-divider></v-divider>
+          <Payment
+            :color="item.color"
+            :name="item.name"
+            :icon="item.icon"
+          />
         </v-col>
       </v-row>
       <v-row>
@@ -32,12 +19,16 @@
         </v-col>
       </v-row>
     </v-card>
-  </v-container>
+  </div>
 </template>
 
 <script>
+import Payment from '@/components/Payment.vue'
 export default {
   name: 'SelectPaymentMethod',
+  components: {
+    Payment
+  },
   data () {
     return {
       paymentMethods: [

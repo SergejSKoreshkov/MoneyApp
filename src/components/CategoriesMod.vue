@@ -1,5 +1,5 @@
 <template>
-    <v-container>
+    <div>
         <ConfirmModal
         :show="showCDM"
         title="Test"
@@ -21,7 +21,7 @@
                 :callbackDelete="showCategoryDeleteModal"
             />
         </v-card>
-    </v-container>
+    </div>
 </template>
 
 <script>

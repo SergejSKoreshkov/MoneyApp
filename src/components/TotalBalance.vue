@@ -1,5 +1,5 @@
 <template>
-    <v-container>
+    <div>
         <v-card>
             <v-row>
                 <v-col cols="12" class="total-balance text-center">
@@ -24,7 +24,7 @@
                 </v-col>
             </v-row>
         </v-card>
-    </v-container>
+    </div>
 </template>
 
 <script>

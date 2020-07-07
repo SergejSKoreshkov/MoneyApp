@@ -1,7 +1,7 @@
 <template>
-  <div class="payments">
+  <v-container class="payments">
     <PaymentMethodMod/>
-  </div>
+  </v-container>
 </template>
 
 <script>
