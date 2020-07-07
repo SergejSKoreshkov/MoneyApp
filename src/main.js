@@ -7,7 +7,7 @@ import 'roboto-fontface/css/roboto/roboto-fontface.css'
 import '@mdi/font/css/materialdesignicons.css'
 
 Vue.config.productionTip = false
-console.log('ENV', process.env.BASE_URL)
+console.log('ENV', process.env)
 
 new Vue({
   router,
