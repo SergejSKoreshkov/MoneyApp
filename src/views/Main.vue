@@ -1,9 +1,9 @@
 <template>
-  <v-container class="main">
+  <div class="main">
     <TotalBalance/>
     <SelectPaymentMethod/>
     <TopCategory/>
-  </v-container>
+  </div>
 </template>
 
 <script>

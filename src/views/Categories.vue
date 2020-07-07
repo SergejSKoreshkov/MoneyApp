@@ -1,7 +1,7 @@
 <template>
-  <v-container class="categories">
+  <div class="categories">
     <CategoriesMod/>
-  </v-container>
+  </div>
 </template>
 
 <script>
