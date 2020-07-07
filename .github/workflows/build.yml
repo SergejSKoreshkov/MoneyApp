@@ -23,6 +23,3 @@ jobs:
     # Runs a single command using the runners shell
     - name: Build
       run: yarn && yarn build --dest docs
-    
-    - name: Deploy
-      uses: SergejSKoreshkov/github-pages-deploy-action@releases/v3
