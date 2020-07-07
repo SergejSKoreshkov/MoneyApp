@@ -10,7 +10,7 @@
         <v-card>
             <v-card-title>Manage categories</v-card-title>
             <v-col>
-                <v-btn class="w100">
+                <v-btn text class="w100">
                     <v-icon class="mr-4">mdi-playlist-plus</v-icon>
                     <span class="mr-4">Add category</span>
                 </v-btn>
