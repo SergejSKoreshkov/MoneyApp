@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <v-container>
         <v-card flat>
             <v-list-item>
             <v-list-item-avatar>
@@ -16,7 +16,7 @@
             </v-list-item>
         </v-card>
         <v-divider></v-divider>
-    </div>
+    </v-container>
 </template>
 
 <script>
