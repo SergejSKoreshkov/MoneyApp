@@ -1,6 +1,6 @@
 <template>
     <v-container>
-        <v-card>
+        <v-card class="pa-1">
             <v-card-title>Top category</v-card-title>
             <CategoryItem
                 name="Car"

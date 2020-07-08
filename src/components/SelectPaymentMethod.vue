@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-card class="pa-4">
+    <v-card class="pa-1">
       <v-row class="text-center">
         <v-col v-for="item in $store.state.payments" :key="item.text" cols="12">
           <Payment
