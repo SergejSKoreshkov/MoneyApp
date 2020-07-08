@@ -12,7 +12,7 @@
       </v-row>
       <v-row>
         <v-col>
-          <v-btn text class="w100" @click="$router.push('/payments')">
+          <v-btn depressed class="w100" @click="$router.push('/payments')">
             <v-icon class="mr-4">mdi-bank</v-icon>
             <span class="mr-4">Manage payment methods</span>
           </v-btn>
