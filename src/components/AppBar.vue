@@ -4,7 +4,11 @@
             <v-app-bar-nav-icon @click="show = !show"></v-app-bar-nav-icon>
         </v-app-bar>
 
-        <v-navigation-drawer v-model="show" absolute>
+        <v-navigation-drawer
+            v-model="show"
+            absolute
+            src="@/assets/back.jpg"
+        >
             <v-list>
                 <v-list-item two-line>
                     <v-list-item-avatar>
