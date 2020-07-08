@@ -3,7 +3,7 @@
         <v-card class="pa-1">
             <v-card-title>Top category</v-card-title>
             <v-row>
-                <v-col class="pa-2 pt-0 pb-0" cols="12">
+                <v-col class="pa-2 pt-1 pb-1" cols="12">
                     <CategoryItem
                         name="Car"
                         icon="mdi-car"
@@ -12,7 +12,7 @@
                         :last="15"
                     />
                 </v-col>
-                <v-col class="pa-2 pt-0 pb-0" cols="12">
+                <v-col class="pa-2 pt-1 pb-1" cols="12">
                     <CategoryItem
                         name="Car"
                         icon="mdi-car"
@@ -22,10 +22,14 @@
                     />
                 </v-col>
             </v-row>
-            <v-btn text class="w100" @click="$router.push('/categories')">
-                <v-icon class="mr-4">mdi-format-list-bulleted-square</v-icon>
-                <span class="mr-4">Manage categories</span>
-            </v-btn>
+            <v-row>
+                <v-col>
+                    <v-btn text class="w100" @click="$router.push('/categories')">
+                        <v-icon class="mr-4">mdi-format-list-bulleted-square</v-icon>
+                        <span class="mr-4">Manage categories</span>
+                    </v-btn>
+                </v-col>
+            </v-row>
         </v-card>
     </v-container>
 </template>
