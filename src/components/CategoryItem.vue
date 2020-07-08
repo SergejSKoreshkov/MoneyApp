@@ -3,7 +3,7 @@
         <v-card flat>
             <v-list-item>
             <v-list-item-avatar>
-                <v-icon>{{ icon }}</v-icon>
+                <v-icon :class="`${color}--text`">{{ icon }}</v-icon>
             </v-list-item-avatar>
             <v-list-item-content>
                 <v-list-item-title>{{ name }}</v-list-item-title>
@@ -22,6 +22,7 @@ export default {
   props: {
     name: String,
     icon: String,
+    color: String,
     last: Number,
     total: Number
   }
