@@ -2,7 +2,7 @@
   <v-container>
     <v-card class="pa-1">
       <v-row class="text-center">
-        <v-col v-for="item in $store.state.payments" :key="item.text" cols="12">
+        <v-col class="pa-2" v-for="item in $store.state.payments" :key="item.text" cols="12">
           <Payment
             :color="item.color"
             :name="item.name"
