@@ -7,7 +7,6 @@
         <v-navigation-drawer
             v-model="show"
             absolute
-            src="@/assets/back.jpg"
         >
             <v-list>
                 <v-list-item two-line>
@@ -19,6 +18,15 @@
                         <v-list-item-subtitle>Total balance</v-list-item-subtitle>
                     </v-list-item-content>
                 </v-list-item>
+                <v-divider></v-divider>
+                <PaymentNavItem
+                    v-for="item in $store.state.payments"
+                    :key="item.name"
+                    :name="item.name"
+                    :color="item.color"
+                    :icon="item.icon"
+                    :total="item.total"
+                />
             </v-list>
 
             <v-divider></v-divider>
@@ -50,11 +58,16 @@
 </template>
 
 <script>
+import PaymentNavItem from '@/components/PaymentNavItem'
+
 export default {
   data () {
     return {
       show: false
     }
+  },
+  components: {
+    PaymentNavItem
   }
 }
 </script>

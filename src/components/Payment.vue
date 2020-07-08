@@ -6,7 +6,7 @@
       </v-list-item-avatar>
       <v-list-item-content>
           <v-list-item-subtitle>{{ name }}</v-list-item-subtitle>
-          <v-list-item-title>1000.00$</v-list-item-title>
+          <v-list-item-title>{{total.toFixed(2)}}$</v-list-item-title>
       </v-list-item-content>
       <v-spacer></v-spacer>
       <v-list-item-action>
@@ -23,7 +23,8 @@ export default {
   props: {
     color: String,
     name: String,
-    icon: String
+    icon: String,
+    total: Number
   }
 }
 </script>

@@ -16,18 +16,13 @@
                 </v-btn>
             </v-col>
             <PaymentMod
-                name="Swedbank"
-                icon="mdi-credit-card"
-                color="orange"
-                :callbackDelete="showPaymentDeleteModal"
-                :callbackEdit="showPaymentDeleteModal"
-            />
-            <PaymentMod
-                name="Cash"
-                icon="mdi-currency-usd"
-                color="green"
-                :callbackDelete="showPaymentDeleteModal"
-                :callbackEdit="showPaymentDeleteModal"
+              v-for="item in $store.state.payments"
+              :key="item.name"
+              :name="item.name"
+              :color="item.color"
+              :icon="item.icon"
+              :callbackDelete="showPaymentDeleteModal"
+              :callbackEdit="showPaymentDeleteModal"
             />
         </v-card>
     </v-container>
