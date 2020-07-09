@@ -13,7 +13,7 @@ export default new Vuex.Store({
     },
     categories: {
       Car: { icon: 'mdi-car', color: 'amber', total: 123 },
-      House: { icon: 'mdi-house', color: 'purple', total: 123 },
+      House: { icon: 'mdi-home', color: 'purple', total: 123 },
       Pen: { icon: 'mdi-pen', color: 'lime', total: 123 },
       Pencil: { icon: 'mdi-pencil', color: 'blue', total: 123 }
     },

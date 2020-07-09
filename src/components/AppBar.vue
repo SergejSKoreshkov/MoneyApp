@@ -33,23 +33,16 @@
 
             <v-list nav dense>
             <v-list-item-group>
-                <v-list-item link @click="$router.push('/')">
+                <v-list-item
+                    v-for="page in pages"
+                    :key="page.src"
+                    link
+                    @click="$router.push(page.src)"
+                >
                     <v-list-item-icon>
-                        <v-icon>mdi-home</v-icon>
+                        <v-icon>{{ page.icon }}</v-icon>
                     </v-list-item-icon>
-                    <v-list-item-title>Home</v-list-item-title>
-                </v-list-item>
-                <v-list-item link @click="$router.push('/')">
-                    <v-list-item-icon>
-                        <v-icon>mdi-bank</v-icon>
-                    </v-list-item-icon>
-                    <v-list-item-title>Manage payment methods</v-list-item-title>
-                </v-list-item>
-                <v-list-item link @click="$router.push('/')">
-                    <v-list-item-icon>
-                        <v-icon>mdi-playlist-edit</v-icon>
-                    </v-list-item-icon>
-                    <v-list-item-title>Manage categories</v-list-item-title>
+                    <v-list-item-title>{{ page.name }}</v-list-item-title>
                 </v-list-item>
             </v-list-item-group>
             </v-list>
@@ -63,7 +56,13 @@ import PaymentNavItem from '@/components/PaymentNavItem'
 export default {
   data () {
     return {
-      show: false
+      show: false,
+      pages: [
+        { name: 'Home', icon: 'mdi-home', src: '/' },
+        { name: 'Manage payment methods ', icon: 'mdi-bank', src: '/payments' },
+        { name: 'Manage categories', icon: 'mdi-format-list-bulleted-square', src: '/categories' },
+        { name: 'Settings', icon: 'mdi-cog', src: '/settings' }
+      ]
     }
   },
   components: {

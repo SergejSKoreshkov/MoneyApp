@@ -7,23 +7,25 @@
         :callbackSuccess="removeCategory"
         :callbackFailure="removeCategory"
         />
-        <v-card>
+        <v-card class="pa-1">
             <v-card-title>Manage payment methods</v-card-title>
-            <v-col>
+            <v-col class="pa-2">
                 <v-btn depressed class="w100">
                     <v-icon class="mr-4">mdi-playlist-plus</v-icon>
                     <span class="mr-4">Add payment method</span>
                 </v-btn>
             </v-col>
-            <PaymentMod
-              v-for="item in $store.state.payments"
-              :key="item.name"
-              :name="item.name"
-              :color="item.color"
-              :icon="item.icon"
-              :callbackDelete="showPaymentDeleteModal"
-              :callbackEdit="showPaymentDeleteModal"
-            />
+            <v-row>
+              <v-col class="pa-2 pt-1 pb-1" v-for="item in Object.keys($store.state.payments)" :key="item" cols="12">
+                <PaymentMod
+                  :name="item"
+                  :color="$store.state.payments[item].color"
+                  :icon="$store.state.payments[item].icon"
+                  :callbackDelete="showPaymentDeleteModal"
+                  :callbackEdit="showPaymentDeleteModal"
+                />
+              </v-col>
+            </v-row>
         </v-card>
     </v-container>
 </template>
