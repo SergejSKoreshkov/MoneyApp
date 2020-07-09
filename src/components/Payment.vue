@@ -13,7 +13,11 @@
         </v-list-item-content>
         <v-spacer></v-spacer>
         <v-list-item-action>
-            <v-btn depressed :class="`${hover ? 'text--darken-2 blue' : color}--text`">
+            <v-btn
+              depressed
+              :class="`${hover ? 'text--darken-2 blue' : color}--text`"
+              @click="addPayment"
+            >
               <v-icon>mdi-plus</v-icon>
             </v-btn>
         </v-list-item-action>
@@ -29,6 +33,15 @@ export default {
     name: String,
     icon: String,
     total: Number
+  },
+  methods: {
+    addPayment () {
+      this.$store.dispatch('addPayment', {
+        payment: this.name,
+        category: 'Car',
+        value: 100
+      })
+    }
   }
 }
 </script>

@@ -3,21 +3,12 @@
         <v-card class="pa-1">
             <v-card-title>Top category</v-card-title>
             <v-row>
-                <v-col class="pa-2 pt-1 pb-1" cols="12">
+                <v-col class="pa-2 pt-1 pb-1" v-for="item in Object.keys($store.state.categories)" :key="item" cols="12">
                     <CategoryItem
-                        name="Car"
-                        icon="mdi-car"
-                        :color="getRandomColor()"
-                        :total="123"
-                        :last="15"
-                    />
-                </v-col>
-                <v-col class="pa-2 pt-1 pb-1" cols="12">
-                    <CategoryItem
-                        name="Car"
-                        icon="mdi-car"
-                        :color="getRandomColor()"
-                        :total="123"
+                        :name="item"
+                        :icon="$store.state.categories[item].icon"
+                        :color="$store.state.categories[item].color"
+                        :total="$store.state.categories[item].total"
                         :last="15"
                     />
                 </v-col>
@@ -36,13 +27,9 @@
 
 <script>
 import CategoryItem from '@/components/CategoryItem.vue'
-import * as colorList from '@/helpers/colorList'
 
 export default {
   name: 'TopCategory',
-  methods: {
-    getRandomColor: () => colorList.colors[Math.floor(Math.random() * colorList.colors.length)]
-  },
   components: {
     CategoryItem
   }
