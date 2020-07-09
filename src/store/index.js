@@ -17,7 +17,10 @@ export default new Vuex.Store({
       Pen: { icon: 'mdi-pen', color: 'lime', total: 123 },
       Pencil: { icon: 'mdi-pencil', color: 'blue', total: 123 }
     },
-    history: []
+    history: [],
+    settings: {
+      theme: 0
+    }
   },
   mutations: {
     changeCategoryTotal (state, { category, value }) {

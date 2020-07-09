@@ -20,12 +20,12 @@
                 </v-list-item>
                 <v-divider></v-divider>
                 <PaymentNavItem
-                    v-for="item in $store.state.payments"
-                    :key="item.name"
-                    :name="item.name"
-                    :color="item.color"
-                    :icon="item.icon"
-                    :total="item.total"
+                    v-for="item in Object.keys($store.state.payments)"
+                    :key="item"
+                    :name="item"
+                    :color="$store.state.payments[item].color"
+                    :icon="$store.state.payments[item].icon"
+                    :total="$store.state.payments[item].total"
                 />
             </v-list>
 
