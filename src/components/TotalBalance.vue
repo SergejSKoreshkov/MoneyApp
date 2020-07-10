@@ -1,26 +1,26 @@
 <template>
-    <v-container>
-        <v-card>
+    <v-container class="d-flex justify-space-between">
+        <v-card class="w100 mr-2 text-center">
             <v-row>
-                <v-col cols="12" class="total-balance text-center">
-                    <v-sparkline
-                        class="sparkline pr-5"
-                        :value="[1, 2, 3, 100, 0, 35, 23, 90, 30]"
-                        :gradient="$vuetify.theme.dark ? ['#333'] : ['#eee']"
-                        :smooth="6"
-                        :padding="15"
-                        :line-width="8"
-                        stroke-linecap="round"
-                        gradient-direction="top"
-                        :fill="false"
-                        type="trend"
-                        auto-draw
-                        :show-labels="false"
-                    ></v-sparkline>
-                    <div class="front-panel">
-                        <v-card-title class="d-block display-1">4000.00$</v-card-title>
-                        <v-card-subtitle>Total balance</v-card-subtitle>
-                    </div>
+                <v-col cols="12">
+                    <v-card-title class="d-block">4000.00$</v-card-title>
+                    <v-card-subtitle>Income</v-card-subtitle>
+                </v-col>
+            </v-row>
+        </v-card>
+        <v-card class="w100 ml-1 mr-1 text-center">
+            <v-row>
+                <v-col cols="12">
+                    <v-card-title class="d-block">4000.00$</v-card-title>
+                    <v-card-subtitle>Total balance</v-card-subtitle>
+                </v-col>
+            </v-row>
+        </v-card>
+        <v-card class="w100 ml-2 text-center">
+            <v-row>
+                <v-col cols="12">
+                    <v-card-title class="d-block">4000.00$</v-card-title>
+                    <v-card-subtitle>Spendings</v-card-subtitle>
                 </v-col>
             </v-row>
         </v-card>

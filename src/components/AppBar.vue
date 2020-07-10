@@ -61,7 +61,7 @@ export default {
         { name: 'Home', icon: 'mdi-home', src: '/' },
         { name: 'Manage payment methods ', icon: 'mdi-bank', src: '/payments' },
         { name: 'Manage categories', icon: 'mdi-format-list-bulleted-square', src: '/categories' },
-        { name: 'Settings', icon: 'mdi-cog', src: '/settings' }
+        { name: 'Settings', icon: 'mdi-cogs', src: '/settings' }
       ]
     }
   },
