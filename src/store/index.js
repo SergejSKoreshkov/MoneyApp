@@ -19,7 +19,7 @@ export default new Vuex.Store({
     },
     history: [],
     settings: {
-      theme: 0
+      theme: 1
     }
   },
   mutations: {
