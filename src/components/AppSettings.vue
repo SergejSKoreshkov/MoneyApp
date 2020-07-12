@@ -9,12 +9,17 @@
                 </v-btn>
             </v-card-title>
         </v-card>
+        <BackButton/>
     </v-container>
 </template>
 
 <script>
+import BackButton from '@/components/BackButton.vue'
 
 export default {
-  name: 'AppSettings'
+  name: 'AppSettings',
+  components: {
+    BackButton
+  }
 }
 </script>

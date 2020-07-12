@@ -32,18 +32,21 @@
               </v-col>
             </v-row>
         </v-card>
+        <BackButton/>
     </v-container>
 </template>
 
 <script>
 import CategoryItemMod from '@/components/CategoryItemMod.vue'
 import ConfirmModal from '@/components/ConfirmModal.vue'
+import BackButton from '@/components/BackButton.vue'
 
 export default {
   name: 'TopCategory',
   components: {
     CategoryItemMod,
-    ConfirmModal
+    ConfirmModal,
+    BackButton
   },
   data () {
     return {
