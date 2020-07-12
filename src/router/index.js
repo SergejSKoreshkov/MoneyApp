@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Main from '../views/Main.vue'
 import Categories from '../views/Categories.vue'
-import Payments from '../views/Payments.vue'
+import Accounts from '../views/Accounts.vue'
 import Settings from '../views/Settings.vue'
 
 Vue.use(VueRouter)
@@ -14,9 +14,9 @@ const routes = [
     component: Main
   },
   {
-    path: '/payments',
-    name: 'Payments',
-    component: Payments
+    path: '/accounts',
+    name: 'Accounts',
+    component: Accounts
   },
   {
     path: '/categories',

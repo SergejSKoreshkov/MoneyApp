@@ -2,13 +2,13 @@
   <div class="main">
     <TotalBalance/>
     <IncomeSpendingsRate/>
-    <SelectPaymentMethod/>
+    <MainAccounts/>
     <TopCategory/>
   </div>
 </template>
 
 <script>
-import SelectPaymentMethod from '@/components/SelectPaymentMethod.vue'
+import MainAccounts from '@/components/MainAccounts.vue'
 import TotalBalance from '@/components/TotalBalance.vue'
 import IncomeSpendingsRate from '@/components/IncomeSpendingsRate.vue'
 import TopCategory from '@/components/TopCategory.vue'
@@ -16,7 +16,7 @@ import TopCategory from '@/components/TopCategory.vue'
 export default {
   name: 'Main',
   components: {
-    SelectPaymentMethod,
+    MainAccounts,
     TotalBalance,
     TopCategory,
     IncomeSpendingsRate

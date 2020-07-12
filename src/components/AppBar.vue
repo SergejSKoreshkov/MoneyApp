@@ -19,13 +19,13 @@
                     </v-list-item-content>
                 </v-list-item>
                 <v-divider></v-divider>
-                <PaymentNavItem
-                    v-for="item in Object.keys($store.state.payments)"
+                <AccountNavItem
+                    v-for="item in Object.keys($store.state.accounts)"
                     :key="item"
                     :name="item"
-                    :color="$store.state.payments[item].color"
-                    :icon="$store.state.payments[item].icon"
-                    :total="$store.state.payments[item].total"
+                    :color="$store.state.accounts[item].color"
+                    :icon="$store.state.accounts[item].icon"
+                    :total="$store.state.accounts[item].total"
                 />
             </v-list>
 
@@ -51,7 +51,7 @@
 </template>
 
 <script>
-import PaymentNavItem from '@/components/PaymentNavItem'
+import AccountNavItem from '@/components/AccountNavItem'
 
 export default {
   data () {
@@ -59,14 +59,14 @@ export default {
       show: false,
       pages: [
         { name: 'Home', icon: 'mdi-home', src: '/' },
-        { name: 'Manage payment methods ', icon: 'mdi-bank', src: '/payments' },
+        { name: 'Manage accounts', icon: 'mdi-bank', src: '/accounts' },
         { name: 'Manage categories', icon: 'mdi-format-list-bulleted-square', src: '/categories' },
         { name: 'Settings', icon: 'mdi-cogs', src: '/settings' }
       ]
     }
   },
   components: {
-    PaymentNavItem
+    AccountNavItem
   }
 }
 </script>

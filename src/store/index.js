@@ -5,7 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    payments: {
+    accounts: {
       Cash: { icon: 'mdi-currency-usd', color: 'green', total: 1000 },
       Swedbank: { icon: 'mdi-credit-card', color: 'orange', total: 1000 },
       Revolut: { icon: 'mdi-power-socket-eu', color: 'indigo', total: 1000 },
@@ -26,17 +26,17 @@ export default new Vuex.Store({
     changeCategoryTotal (state, { category, value }) {
       state.categories[category].total += value
     },
-    changePaymentsTotal (state, { payment, value }) {
-      state.payments[payment].total += value
+    changeAccountTotal (state, { account, value }) {
+      state.accounts[account].total += value
     },
     addPaymentToHistory (state, { category, value }) {
       state.history.push({ category, value, time: Date.now() })
     }
   },
   actions: {
-    addPayment ({ commit, state }, { payment, category, value }) {
+    addAccount ({ commit, state }, { account, category, value }) {
       commit('changeCategoryTotal', { category, value })
-      commit('changePaymentsTotal', { payment, value })
+      commit('changeAccountTotal', { account, value })
       commit('addPaymentToHistory', { category: state.categories[category], value })
     }
   },

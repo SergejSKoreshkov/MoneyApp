@@ -8,7 +8,13 @@
         :callbackFailure="removeCategory"
         />
         <v-card class="pa-1">
-            <v-card-title>Manage categories</v-card-title>
+            <v-card-title>
+                Manage categories
+                <v-spacer></v-spacer>
+                <v-btn icon @click="$router.go(-1)">
+                    <v-icon>mdi-arrow-left</v-icon>
+                </v-btn>
+            </v-card-title>
               <v-col class="pa-2">
                 <v-btn depressed class="w100">
                     <v-icon class="mr-4">mdi-playlist-plus</v-icon>

@@ -1,16 +1,16 @@
 <template>
   <div class="payments">
-    <PaymentMethodMod/>
+    <AccountsMod/>
   </div>
 </template>
 
 <script>
-import PaymentMethodMod from '@/components/PaymentMethodMod.vue'
+import AccountsMod from '@/components/AccountsMod.vue'
 
 export default {
   name: 'Payments',
   components: {
-    PaymentMethodMod
+    AccountsMod
   }
 }
 </script>

@@ -13,7 +13,7 @@
             <v-btn
               depressed
               :class="`${color}--text`"
-              @click="addPayment"
+              @click="addAccount"
             >
               <v-icon>mdi-plus</v-icon>
             </v-btn>
@@ -31,9 +31,9 @@ export default {
     total: Number
   },
   methods: {
-    addPayment () {
-      this.$store.dispatch('addPayment', {
-        payment: this.name,
+    addAccount () {
+      this.$store.dispatch('addAccount', {
+        account: this.name,
         category: 'Car',
         value: 100
       })
