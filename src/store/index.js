@@ -20,7 +20,8 @@ export default new Vuex.Store({
     history: [],
     settings: {
       theme: 1
-    }
+    },
+    isNavBarOpen: false
   },
   mutations: {
     changeCategoryTotal (state, { category, value }) {
@@ -31,6 +32,9 @@ export default new Vuex.Store({
     },
     addPaymentToHistory (state, { category, value }) {
       state.history.push({ category, value, time: Date.now() })
+    },
+    setIsNavBarOpen (state, newState) {
+      state.isNavBarOpen = newState
     }
   },
   actions: {

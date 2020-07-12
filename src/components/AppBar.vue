@@ -1,11 +1,11 @@
 <template>
     <div>
         <v-app-bar>
-            <v-app-bar-nav-icon @click="show = !show"></v-app-bar-nav-icon>
+            <v-app-bar-nav-icon @click="$store.commit('setIsNavBarOpen', true)"></v-app-bar-nav-icon>
         </v-app-bar>
 
         <v-navigation-drawer
-            v-model="show"
+            v-model="$store.state.isNavBarOpen"
             absolute
         >
             <v-list>
@@ -54,9 +54,13 @@
 import AccountNavItem from '@/components/AccountNavItem'
 
 export default {
+  computed: {
+    showLocal () {
+      return this.show
+    }
+  },
   data () {
     return {
-      show: false,
       pages: [
         { name: 'Home', icon: 'mdi-home', src: '/' },
         { name: 'Manage accounts', icon: 'mdi-bank', src: '/accounts' },
