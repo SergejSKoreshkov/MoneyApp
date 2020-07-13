@@ -16,7 +16,7 @@
                 </v-btn>
             </v-card-title>
               <v-col class="pa-2">
-                <v-btn depressed class="w100">
+                <v-btn depressed class="w100" @click="$router.push('/addcategory')">
                     <v-icon class="mr-4">mdi-playlist-plus</v-icon>
                     <span class="mr-4">Add category</span>
                 </v-btn>
