@@ -4,6 +4,7 @@ import Main from '../views/Main.vue'
 import Categories from '../views/Categories.vue'
 import Accounts from '../views/Accounts.vue'
 import Settings from '../views/Settings.vue'
+import AddCategory from '../views/AddCategory.vue'
 
 Vue.use(VueRouter)
 
@@ -27,6 +28,11 @@ const routes = [
     path: '/settings',
     name: 'Settings',
     component: Settings
+  },
+  {
+    path: '/addcategory',
+    name: 'AddCategory',
+    component: AddCategory
   }
 ]
 
