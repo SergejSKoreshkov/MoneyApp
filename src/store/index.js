@@ -42,6 +42,11 @@ export default new Vuex.Store({
       commit('changeCategoryTotal', { category, value })
       commit('changeAccountTotal', { account, value })
       commit('addPaymentToHistory', { category: state.categories[category], value })
+    },
+    addCategory ({ commit, state }, { account, category, value }) {
+      commit('changeCategoryTotal', { category, value })
+      commit('changeAccountTotal', { account, value })
+      commit('addPaymentToHistory', { category: state.categories[category], value })
     }
   },
   modules: {

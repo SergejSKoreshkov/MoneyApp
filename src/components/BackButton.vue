@@ -1,12 +1,20 @@
 <template>
-    <div class="w100 d-flex pt-3">
+    <div class="d-flex pt-3">
         <v-spacer></v-spacer>
-        <v-btn @click="$router.go(-1)">
-            <v-icon>mdi-arrow-left</v-icon>
-            Back
+        <v-btn class="ml-2" v-for="button in buttons" :key="button.label" @click="button.action">
+            <v-icon>{{ button.icon }}</v-icon>
+            {{ button.label }}
         </v-btn>
     </div>
 </template>
+
+<script>
+export default {
+  props: {
+    buttons: Array
+  }
+}
+</script>
 
 <style lang="less" scoped>
     .w100 {
