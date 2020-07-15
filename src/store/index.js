@@ -19,7 +19,7 @@ export default new Vuex.Store({
     },
     history: [],
     settings: {
-      theme: 1
+      theme: 0
     },
     isNavBarOpen: false
   },
