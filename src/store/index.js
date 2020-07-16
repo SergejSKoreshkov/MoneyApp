@@ -19,7 +19,7 @@ export default new Vuex.Store({
     },
     history: [],
     settings: {
-      theme: 0
+      theme: 1
     },
     isNavBarOpen: false
   },
@@ -30,9 +30,6 @@ export default new Vuex.Store({
     changeAccountTotal (state, { account, value }) {
       state.accounts[account].total += value
     },
-    addPaymentToHistory (state, { category, value }) {
-      state.history.push({ category, value, time: Date.now() })
-    },
     setIsNavBarOpen (state, newState) {
       state.isNavBarOpen = newState
     }
@@ -41,12 +38,14 @@ export default new Vuex.Store({
     addAccount ({ commit, state }, { account, category, value }) {
       commit('changeCategoryTotal', { category, value })
       commit('changeAccountTotal', { account, value })
-      commit('addPaymentToHistory', { category: state.categories[category], value })
+      state.history.push({
+        category: state.categories[category],
+        value,
+        time: Date.now()
+      })
     },
-    addCategory ({ commit, state }, { account, category, value }) {
-      commit('changeCategoryTotal', { category, value })
-      commit('changeAccountTotal', { account, value })
-      commit('addPaymentToHistory', { category: state.categories[category], value })
+    addCategory ({ state }, { name, color, icon }) {
+      state.categories[name] = { color, icon, total: 0 }
     }
   },
   modules: {

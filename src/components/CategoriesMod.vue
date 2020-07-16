@@ -32,7 +32,7 @@
               </v-col>
             </v-row>
         </v-card>
-        <BackButton/>
+        <BackButton :buttons="[{ label: 'back', icon: 'mdi-arrow-left', action: () => this.$router.go(-1) }]"/>
     </v-container>
 </template>
 
