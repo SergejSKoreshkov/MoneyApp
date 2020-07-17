@@ -19,11 +19,12 @@
                                   <v-text-field
                                     placeholder="Search icons"
                                     append-icon="mdi-magnify"
+                                    v-model="iconsFilter"
                                   ></v-text-field>
                               </v-card-title>
                               <v-card-text>
                                 <v-row>
-                                  <v-col v-for="icon in icons" :key="icon" cols="2">
+                                  <v-col v-for="icon in iconsJSONFiltered" :key="icon" cols="2">
                                     <v-btn icon @click="setIcon(`mdi-${icon}`)">
                                       <v-icon>mdi-{{ icon }}</v-icon>
                                     </v-btn>
@@ -80,8 +81,13 @@ export default {
       name: '',
       icon: 'mdi-car',
       colors: colors.colors,
-      icons: iconsJSON,
+      iconsFilter: '',
       showIconSelect: false
+    }
+  },
+  computed: {
+    iconsJSONFiltered () {
+      return iconsJSON.filter(el => this.iconsFilter.length > 1 && el.includes(this.iconsFilter))
     }
   },
   methods: {
