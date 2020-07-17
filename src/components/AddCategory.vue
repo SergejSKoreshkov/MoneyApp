@@ -87,7 +87,7 @@ export default {
   },
   computed: {
     iconsJSONFiltered () {
-      return iconsJSON.filter(el => this.iconsFilter.length > 1 && el.includes(this.iconsFilter))
+      return iconsJSON.filter(el => this.iconsFilter.length > 1 && el.includes(this.iconsFilter.toLowerCase()))
     }
   },
   methods: {
