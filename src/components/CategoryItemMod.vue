@@ -26,7 +26,6 @@ export default {
   },
   methods: {
     deleteCategory () {
-      console.log(this.name)
       this.callbackDelete(this.name)
     }
   }

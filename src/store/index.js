@@ -46,6 +46,9 @@ export default new Vuex.Store({
     },
     addCategory ({ state }, { name, color, icon }) {
       state.categories[name] = { color, icon, total: 0 }
+    },
+    removeCategory ({ state }, { name }) {
+      delete state.categories[name]
     }
   },
   modules: {

@@ -2,10 +2,10 @@
     <v-container>
         <ConfirmModal
         :show="showCDM"
-        title="Test"
-        text="Allow to delete this?"
+        :title="`Remove ${categoryToDelete}`"
+        text="Remove category ?"
         :callbackSuccess="removeCategory"
-        :callbackFailure="removeCategory"
+        :callbackFailure="closeDialog"
         />
         <v-card class="pa-1">
             <v-card-title>
@@ -27,7 +27,7 @@
                   :name="item"
                   :icon="$store.state.categories[item].icon"
                   :color="$store.state.categories[item].color"
-                  :callbackDelete="showCategoryDeleteModal"
+                  :callbackDelete="showCategoryDeleteModal(item)"
                 />
               </v-col>
             </v-row>
@@ -50,15 +50,22 @@ export default {
   },
   data () {
     return {
-      showCDM: false
+      showCDM: false,
+      categoryToDelete: null
     }
   },
   methods: {
-    showCategoryDeleteModal () {
-      this.showCDM = true
+    showCategoryDeleteModal (name) {
+      return () => {
+        this.categoryToDelete = name
+        this.showCDM = true
+      }
     },
     removeCategory () {
-      console.log(123)
+      this.$store.dispatch('removeCategory', { name: this.categoryToDelete })
+      this.showCDM = false
+    },
+    closeDialog () {
       this.showCDM = false
     }
   }

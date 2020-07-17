@@ -12,9 +12,26 @@
               <v-col class="pa-2 pt-1 pb-0" cols="12">
                   <v-list-item>
                     <v-list-item-avatar>
-                      <v-btn icon>
-                        <v-icon :class="`${color}--text`">{{ icon }}</v-icon>
-                      </v-btn>
+                      <v-icon :color="color" @click="showIconSelect = true">{{ icon }}</v-icon>
+                      <v-dialog v-model="showIconSelect">
+                          <v-card>
+                              <v-card-title>
+                                  <v-text-field
+                                    placeholder="Search icons"
+                                    append-icon="mdi-magnify"
+                                  ></v-text-field>
+                              </v-card-title>
+                              <v-card-text>
+                                <v-row>
+                                  <v-col v-for="icon in icons" :key="icon" cols="2">
+                                    <v-btn icon @click="setIcon(`mdi-${icon}`)">
+                                      <v-icon>mdi-{{ icon }}</v-icon>
+                                    </v-btn>
+                                  </v-col>
+                                </v-row>
+                              </v-card-text>
+                          </v-card>
+                      </v-dialog>
                     </v-list-item-avatar>
                     <v-list-item-content>
                         <v-text-field v-model="name" placeholder="Car" :color="color"></v-text-field>
@@ -23,7 +40,7 @@
               </v-col>
               <v-col class="pa-2 pt-0 pb-1" cols="12">
                   <v-list-item>
-                  <v-select :color="color" v-model="color" :chips="true" :items="items">
+                  <v-select class="no-underline" :color="color" v-model="color" :chips="true" :items="colors">
                     <template v-slot:selection="{ item }">
                       <v-chip :class="`${item}`">
                         <span>{{ item }}</span>
@@ -42,7 +59,7 @@
         <BackButton
           :buttons="[
             { label: 'back', icon: 'mdi-arrow-left', action: () => this.$router.go(-1) },
-            { label: 'done', icon: 'mdi-check', action: () => this.$store.dispatch('addCategory', { name, color, icon }) }
+            { label: 'done', icon: 'mdi-check', action: addCategory }
           ]"
         />
     </v-container>
@@ -51,6 +68,8 @@
 <script>
 import BackButton from '@/components/BackButton.vue'
 import * as colors from '@/helpers/colorList'
+import iconsJSON from '@/assets/output.json'
+
 export default {
   components: {
     BackButton
@@ -60,7 +79,23 @@ export default {
       color: 'amber',
       name: '',
       icon: 'mdi-car',
-      items: colors.colors
+      colors: colors.colors,
+      icons: iconsJSON,
+      showIconSelect: false
+    }
+  },
+  methods: {
+    addCategory () {
+      this.$store.dispatch('addCategory', {
+        name: this.name,
+        color: this.color,
+        icon: this.icon
+      })
+      this.$router.go(-1)
+    },
+    setIcon (icon) {
+      this.icon = icon
+      this.showIconSelect = false
     }
   }
 }
@@ -73,5 +108,11 @@ export default {
   }
   .v-color-picker__swatches > div {
     justify-content: space-around !important;
+  }
+  .no-underline .v-input__slot::after {
+    display: none;
+  }
+  .no-underline .v-input__slot::before {
+    display: none;
   }
 </style>
