@@ -13,11 +13,17 @@ export default new Vuex.Store({
     },
     categories: {
       Car: { icon: 'mdi-car', color: 'amber', total: 123 },
-      House: { icon: 'mdi-home', color: 'purple', total: 123 },
+      House: { icon: 'mdi-home', color: 'purple', total: 23 },
       Pen: { icon: 'mdi-pen', color: 'lime', total: 123 },
       Pencil: { icon: 'mdi-pencil', color: 'blue', total: 123 }
     },
-    history: [],
+    history: [
+      { category: 'Car', account: 'Cash', total: 123.43, time: Date.now() },
+      { category: 'Car', account: 'Cash', total: 2.43, time: Date.now() },
+      { category: 'Car', account: 'Cash', total: 5.43, time: Date.now() },
+      { category: 'Car', account: 'Cash', total: 1.43, time: Date.now() },
+      { category: 'House', account: 'Swedbank', total: 1.53, time: Date.now() }
+    ],
     settings: {
       theme: 1
     },
@@ -47,8 +53,26 @@ export default new Vuex.Store({
     addCategory ({ state }, { name, color, icon }) {
       state.categories[name] = { color, icon, total: 0 }
     },
+    editCategory ({ state }, { name, newName, color, icon }) {
+      const buffer = { ...state.categories[name] }
+      delete state.categories[name]
+      state.categories[newName] = buffer
+      state.categories[newName].color = color
+      state.categories[newName].icon = icon
+      state.history = state.history.map(el => {
+        if (el.category === name) {
+          el.category = newName
+        }
+        return el
+      })
+    },
     removeCategory ({ state }, { name }) {
       delete state.categories[name]
+      state.history.map((el, index) => {
+        if (el.category === name) {
+          delete state.history[index]
+        }
+      })
     }
   },
   modules: {

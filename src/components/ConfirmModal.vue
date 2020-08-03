@@ -2,6 +2,7 @@
     <v-dialog
         v-model="show"
         max-width="290"
+        persistent
       >
         <v-card>
           <v-card-title class="headline">{{ title }}</v-card-title>

@@ -82,7 +82,8 @@ export default {
       icon: 'mdi-car',
       colors: colors.colors,
       iconsFilter: '',
-      showIconSelect: false
+      showIconSelect: false,
+      isEditing: false
     }
   },
   computed: {
@@ -90,13 +91,27 @@ export default {
       return iconsJSON.filter(el => this.iconsFilter.length > 1 && el.includes(this.iconsFilter.toLowerCase()))
     }
   },
+  mounted () {
+    if (this.$route.query.name) {
+      const item = this.$store.state.categories[this.$route.query.name]
+      this.name = this.$route.query.name
+      this.color = item.color
+      this.icon = item.icon
+      this.isEditing = true
+    }
+  },
   methods: {
     addCategory () {
-      this.$store.dispatch('addCategory', {
-        name: this.name,
-        color: this.color,
-        icon: this.icon
-      })
+      this.$store.dispatch(
+        this.isEditing
+          ? 'editCategory'
+          : 'addCategory',
+        {
+          name: this.isEditing ? this.$route.query.name : this.name,
+          color: this.color,
+          icon: this.icon,
+          newName: this.name
+        })
       this.$router.go(-1)
     },
     setIcon (icon) {

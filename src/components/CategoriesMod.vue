@@ -28,6 +28,7 @@
                   :icon="$store.state.categories[item].icon"
                   :color="$store.state.categories[item].color"
                   :callbackDelete="showCategoryDeleteModal(item)"
+                  :callbackEdit="editCategory(item)"
                 />
               </v-col>
             </v-row>
@@ -64,6 +65,14 @@ export default {
     removeCategory () {
       this.$store.dispatch('removeCategory', { name: this.categoryToDelete })
       this.showCDM = false
+    },
+    editCategory (name) {
+      return () => {
+        this.$router.push({
+          path: '/addcategory',
+          query: { name }
+        })
+      }
     },
     closeDialog () {
       this.showCDM = false

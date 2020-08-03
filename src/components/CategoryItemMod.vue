@@ -7,7 +7,10 @@
       <v-list-item-content>
           <v-list-item-title>{{ name }}</v-list-item-title>
       </v-list-item-content>
-      <v-list-item-action>
+      <v-list-item-action class="d-flex flex-row">
+          <v-btn @click="editCategory" icon :class="`${color}--text`">
+              <v-icon>mdi-pencil</v-icon>
+          </v-btn>
           <v-btn icon @click="deleteCategory">
               <v-icon>mdi-delete</v-icon>
           </v-btn>
@@ -22,11 +25,15 @@ export default {
     name: String,
     icon: String,
     color: String,
-    callbackDelete: Function
+    callbackDelete: Function,
+    callbackEdit: Function
   },
   methods: {
     deleteCategory () {
-      this.callbackDelete(this.name)
+      this.callbackDelete()
+    },
+    editCategory () {
+      this.callbackEdit()
     }
   }
 }
