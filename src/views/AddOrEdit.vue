@@ -1,22 +1,22 @@
 <template>
-  <div class="addcategory">
-    <AddCategory/>
+  <div class="addoredit">
+    <AddOrEditComponent/>
   </div>
 </template>
 
 <script>
-import AddCategory from '@/components/AddCategory.vue'
+import AddOrEditComponent from '@/components/AddOrEdit.vue'
 
 export default {
-  name: 'Categories',
+  name: 'AddOrEdit',
   components: {
-    AddCategory
+    AddOrEditComponent
   }
 }
 </script>
 
 <style lang="less" scoped>
-  .addcategory {
+  .addoredit {
     width: 100%;
     min-height: 100vh;
   }

@@ -3,7 +3,7 @@
     <v-card class="pa-1">
       <v-row class="text-center">
         <v-col class="pa-2" v-for="item in Object.keys($store.state.accounts)" :key="item" cols="12">
-          <Account
+          <AccountItem
             :color="$store.state.accounts[item].color"
             :name="item"
             :icon="$store.state.accounts[item].icon"
@@ -24,11 +24,11 @@
 </template>
 
 <script>
-import Account from '@/components/Account.vue'
+import AccountItem from '@/components/AccountItem.vue'
 export default {
   name: 'MainAccounts',
   components: {
-    Account
+    AccountItem
   }
 }
 </script>

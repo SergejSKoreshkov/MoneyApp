@@ -41,13 +41,37 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    addAccount ({ commit, state }, { account, category, value }) {
+    addPayment ({ commit, state }, { account, category, value }) {
       commit('changeCategoryTotal', { category, value })
       commit('changeAccountTotal', { account, value })
       state.history.push({
         category: state.categories[category],
         value,
         time: Date.now()
+      })
+    },
+    addAccount ({ state }, { name, color, icon }) {
+      state.accounts[name] = { color, icon, total: 0 }
+    },
+    editAccount ({ state }, { name, newName, color, icon }) {
+      const buffer = { ...state.accounts[name] }
+      delete state.accounts[name]
+      state.accounts[newName] = buffer
+      state.accounts[newName].color = color
+      state.accounts[newName].icon = icon
+      state.history = state.history.map(el => {
+        if (el.accounts === name) {
+          el.accounts = newName
+        }
+        return el
+      })
+    },
+    removeAccount ({ state }, { name }) {
+      delete state.accounts[name]
+      state.history.map((el, index) => {
+        if (el.accounts === name) {
+          delete state.accounts[index]
+        }
       })
     },
     addCategory ({ state }, { name, color, icon }) {

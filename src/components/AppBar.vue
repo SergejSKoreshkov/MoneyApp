@@ -19,7 +19,7 @@
                     </v-list-item-content>
                 </v-list-item>
                 <v-divider></v-divider>
-                <AccountNavItem
+                <AccountsNavItem
                     v-for="item in Object.keys($store.state.accounts)"
                     :key="item"
                     :name="item"
@@ -51,7 +51,7 @@
 </template>
 
 <script>
-import AccountNavItem from '@/components/AccountNavItem'
+import AccountsNavItem from '@/components/AccountsNavItem'
 
 export default {
   computed: {
@@ -70,7 +70,7 @@ export default {
     }
   },
   components: {
-    AccountNavItem
+    AccountsNavItem
   }
 }
 </script>

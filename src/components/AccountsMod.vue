@@ -4,8 +4,8 @@
         :show="showPDM"
         title="Test"
         text="Allow to delete this?"
-        :callbackSuccess="removeCategory"
-        :callbackFailure="removeCategory"
+        :callbackSuccess="removeAccount"
+        :callbackFailure="closeDialog"
         />
         <v-card class="pa-1">
             <v-card-title>
@@ -16,19 +16,19 @@
                 </v-btn>
             </v-card-title>
             <v-col class="pa-2">
-                <v-btn depressed class="w100">
+                <v-btn depressed class="w100" @click="$router.push({ path: '/addOrEdit',query: { type: 'account' }})">
                     <v-icon class="mr-4">mdi-playlist-plus</v-icon>
                     <span class="mr-4">Add account</span>
                 </v-btn>
             </v-col>
             <v-row>
               <v-col class="pa-2 pt-1 pb-1" v-for="item in Object.keys($store.state.accounts)" :key="item" cols="12">
-                <AccountMod
+                <AccountItemMod
                   :name="item"
                   :color="$store.state.accounts[item].color"
                   :icon="$store.state.accounts[item].icon"
-                  :callbackDelete="showAccountDeleteModal"
-                  :callbackEdit="showAccountDeleteModal"
+                  :callbackDelete="showAccountDeleteModal(item)"
+                  :callbackEdit="editAccount(item)"
                 />
               </v-col>
             </v-row>
@@ -38,14 +38,14 @@
 </template>
 
 <script>
-import AccountMod from '@/components/AccountMod.vue'
+import AccountItemMod from '@/components/AccountItemMod.vue'
 import ConfirmModal from '@/components/ConfirmModal.vue'
 import BackButton from '@/components/BackButton.vue'
 
 export default {
-  name: 'TopCategory',
+  name: 'AccountsMod',
   components: {
-    AccountMod,
+    AccountItemMod,
     ConfirmModal,
     BackButton
   },
@@ -55,12 +55,26 @@ export default {
     }
   },
   methods: {
-    showAccountDeleteModal () {
-      this.showPDM = true
+    showAccountDeleteModal (name) {
+      return () => {
+        this.accountToDelete = name
+        this.showPDM = true
+      }
     },
-    removeCategory () {
-      console.log(123)
+    removeAccount () {
+      this.$store.dispatch('removeAccount', { name: this.accountToDelete })
       this.showPDM = false
+    },
+    editAccount (name) {
+      return () => {
+        this.$router.push({
+          path: '/addOrEdit',
+          query: { name, type: 'account' }
+        })
+      }
+    },
+    closeDialog () {
+      this.showCDM = false
     }
   }
 }

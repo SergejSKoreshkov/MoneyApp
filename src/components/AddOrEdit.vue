@@ -2,7 +2,7 @@
     <v-container>
         <v-card class="pa-1">
             <v-card-title>
-                Add category
+                Add {{ type }}
                 <v-spacer></v-spacer>
                 <v-btn icon @click="$router.go(-1)">
                     <v-icon>mdi-arrow-left</v-icon>
@@ -60,7 +60,7 @@
         <BackButton
           :buttons="[
             { label: 'back', icon: 'mdi-arrow-left', action: () => this.$router.go(-1) },
-            { label: 'done', icon: 'mdi-check', action: addCategory }
+            { label: 'done', icon: 'mdi-check', action: save }
           ]"
         />
     </v-container>
@@ -89,29 +89,38 @@ export default {
   computed: {
     iconsJSONFiltered () {
       return iconsJSON.filter(el => this.iconsFilter.length > 1 && el.includes(this.iconsFilter.toLowerCase()))
+    },
+    type () {
+      return this.$route.query.type || 'category'
     }
   },
   mounted () {
-    if (this.$route.query.name) {
-      const item = this.$store.state.categories[this.$route.query.name]
-      this.name = this.$route.query.name
-      this.color = item.color
-      this.icon = item.icon
-      this.isEditing = true
-    }
+    if (!this.$route.query.name) return
+    const item = this.$store.state[this.type === 'category' ? 'categories' : 'accounts'][this.$route.query.name]
+    this.name = this.$route.query.name
+    this.color = item.color
+    this.icon = item.icon
+    this.isEditing = true
   },
   methods: {
-    addCategory () {
-      this.$store.dispatch(
-        this.isEditing
-          ? 'editCategory'
-          : 'addCategory',
-        {
-          name: this.isEditing ? this.$route.query.name : this.name,
-          color: this.color,
-          icon: this.icon,
-          newName: this.name
-        })
+    save () {
+      const props = {
+        name: this.isEditing ? this.$route.query.name : this.name,
+        color: this.color,
+        icon: this.icon,
+        newName: this.name
+      }
+      if (this.type === 'category') {
+        this.$store.dispatch(
+          this.isEditing
+            ? 'editCategory'
+            : 'addCategory', props)
+      } else if (this.type === 'account') {
+        this.$store.dispatch(
+          this.isEditing
+            ? 'editAccount'
+            : 'addAccount', props)
+      }
       this.$router.go(-1)
     },
     setIcon (icon) {

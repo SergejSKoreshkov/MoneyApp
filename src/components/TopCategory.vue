@@ -3,7 +3,7 @@
         <v-card class="pa-1">
             <v-card-title>Top category</v-card-title>
             <v-row>
-                <v-col class="pa-2 pt-1 pb-1" v-for="item in topCategories" :key="item" cols="12">
+                <v-col class="pa-2 pt-1 pb-1" v-for="item in topCategories" :key="item.name" cols="12">
                     <CategoryItem
                         :name="item.name"
                         :icon="item.icon"
