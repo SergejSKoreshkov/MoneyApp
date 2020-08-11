@@ -5,6 +5,7 @@ import Categories from '../views/Categories.vue'
 import Accounts from '../views/Accounts.vue'
 import Settings from '../views/Settings.vue'
 import AddOrEdit from '../views/AddOrEdit.vue'
+import TEMP from '../views/TEMP.vue'
 
 Vue.use(VueRouter)
 
@@ -33,6 +34,11 @@ const routes = [
     path: '/addOrEdit',
     name: 'AddOrEdit',
     component: AddOrEdit
+  },
+  {
+    path: '/keyboard',
+    name: 'TEMP',
+    component: TEMP
   }
 ]
 
