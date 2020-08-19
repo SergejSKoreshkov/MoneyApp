@@ -25,7 +25,7 @@ export default new Vuex.Store({
       { category: 'House', account: 'Swedbank', total: 1.53, time: Date.now() }
     ],
     settings: {
-      theme: 1
+      theme: 0
     },
     isNavBarOpen: false
   },
