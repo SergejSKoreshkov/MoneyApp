@@ -1,19 +1,19 @@
 <template>
   <div>
+      <div v-bind:style="{ height: `${height}px`}" id="keyboard-padding"></div>
       <v-card ref="keyboard-card" class="keyboard pa-1 pb-4">
           <v-row class="ma-0">
               <v-col cols="12">
                 <v-text-field v-model="text" hide-details outlined disabled></v-text-field>
               </v-col>
               <v-col cols="3" v-for="btnItem in buttons" :key="btnItem.text">
-                  <v-btn @click="btnItem.action" v-show="btnItem.text" text class="w100 font-weight-bold">{{ btnItem.text }}</v-btn>
-                  <v-btn @click="btnItem.action" v-show="btnItem.icon" text class="w100">
+                  <v-btn @click="btnItem.action" v-show="btnItem.text" text class="w100 font-weight-bold mt-1 mb-1">{{ btnItem.text }}</v-btn>
+                  <v-btn @click="btnItem.action" v-show="btnItem.icon" text class="w100 mt-1 mb-1">
                     <v-icon>{{ btnItem.icon }}</v-icon>
                   </v-btn>
               </v-col>
           </v-row>
       </v-card>
-      <div v-bind:style="{ height: `${height}px`}" id="keyboard-padding"></div>
   </div>
 </template>
 
