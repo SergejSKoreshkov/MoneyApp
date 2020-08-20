@@ -7,7 +7,7 @@
       >
         <v-card>
           <v-card-title>Select category</v-card-title>
-          <v-row class="pt-2 ma-0">
+          <v-row class="pt-2 ma-0 scroll-mw-300">
             <v-col v-for="category in Object.keys($store.state.categories)" :key="category">
               <v-btn
                 depressed
@@ -83,5 +83,9 @@ export default {
 <style scoped>
  .v-dialog__content {
    align-items: flex-start;
+ }
+ .scroll-mw-300 {
+   overflow-y: auto;
+   max-height: 34vh;
  }
 </style>
