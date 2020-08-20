@@ -1,5 +1,6 @@
 <template>
     <div>
+        <AddModal :color="color" :title="name" :icon="icon" :show="showModal"></AddModal>
         <v-list-item>
         <v-list-item-avatar>
             <v-icon :class="`${color}--text`">{{ icon }}</v-icon>
@@ -23,6 +24,8 @@
 </template>
 
 <script>
+import AddModal from '@/components/AddModal.vue'
+
 export default {
   props: {
     color: String,
@@ -30,13 +33,22 @@ export default {
     icon: String,
     total: Number
   },
+  components: {
+    AddModal
+  },
+  data () {
+    return {
+      showModal: false
+    }
+  },
   methods: {
     addAccount () {
-      this.$store.dispatch('addAccount', {
-        account: this.name,
-        category: 'Car',
-        value: 100
-      })
+      this.showModal = true
+      // this.$store.dispatch('addAccount', {
+      //   account: this.name,
+      //   category: 'Car',
+      //   value: 100
+      // })
     }
   }
 }

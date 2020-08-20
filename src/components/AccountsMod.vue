@@ -34,7 +34,6 @@
             </v-row>
         </v-card>
         <BackButton :buttons="[{ label: 'back', icon: 'mdi-arrow-left', action: () => this.$router.go(-1) }]"/>
-        <Keyboard></Keyboard>
     </v-container>
 </template>
 
@@ -42,15 +41,13 @@
 import AccountItemMod from '@/components/AccountItemMod.vue'
 import ConfirmModal from '@/components/ConfirmModal.vue'
 import BackButton from '@/components/BackButton.vue'
-import Keyboard from '@/components/Keyboard.vue'
 
 export default {
   name: 'AccountsMod',
   components: {
     AccountItemMod,
     ConfirmModal,
-    BackButton,
-    Keyboard
+    BackButton
   },
   data () {
     return {

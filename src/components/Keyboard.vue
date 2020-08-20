@@ -22,6 +22,9 @@ import * as stringMath from 'string-math'
 
 export default {
   name: 'Keyboard',
+  props: {
+    resultCallback: Function
+  },
   mounted () {
     this.height = this.$refs['keyboard-card']?.$el.getBoundingClientRect().height
   },
@@ -36,6 +39,8 @@ export default {
       this.text = stringMath(this.text).toString()
     },
     save () {
+      this.calc()
+      this.resultCallback(parseFloat(this.text))
     }
   },
   data () {
