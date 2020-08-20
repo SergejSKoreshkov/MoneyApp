@@ -1,6 +1,13 @@
 <template>
     <div>
-        <AddModal :color="color" :title="name" :icon="icon" :show="showModal"></AddModal>
+        <AddModal
+          :color="color"
+          :title="name"
+          :icon="icon"
+          :show="showModal"
+          :callbackFailure="() => showModal = false"
+          :callbackSuccess="() => showModal = false"
+        ></AddModal>
         <v-list-item>
         <v-list-item-avatar>
             <v-icon :class="`${color}--text`">{{ icon }}</v-icon>

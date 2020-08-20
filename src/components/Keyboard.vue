@@ -4,7 +4,7 @@
       <v-card ref="keyboard-card" class="keyboard pa-1 pb-4">
           <v-row class="ma-0">
               <v-col cols="12">
-                <v-text-field v-model="text" hide-details outlined disabled></v-text-field>
+                <v-text-field placeholder="Price" v-model="text" hide-details outlined disabled></v-text-field>
               </v-col>
               <v-col cols="3" v-for="btnItem in buttons" :key="btnItem.text">
                   <v-btn @click="btnItem.action" v-show="btnItem.text" text class="w100 font-weight-bold mt-1 mb-1 text-h6">{{ btnItem.text }}</v-btn>
@@ -23,7 +23,7 @@ import * as stringMath from 'string-math'
 export default {
   name: 'Keyboard',
   props: {
-    resultCallback: Function
+    callbackSave: Function
   },
   mounted () {
     this.height = this.$refs['keyboard-card']?.$el.getBoundingClientRect().height
@@ -40,7 +40,7 @@ export default {
     },
     save () {
       this.calc()
-      this.resultCallback(parseFloat(this.text))
+      this.callbackSave(parseFloat(this.text))
     }
   },
   data () {
