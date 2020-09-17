@@ -11,7 +11,7 @@
             <v-col v-for="category in Object.keys($store.state.categories)" :key="category">
               <v-btn
                 depressed
-                @click="showKeyboard = true"
+                @click="selectCategory(category)"
                 :class="`${$store.state.categories[category].color}--text pa-1 w100`"
               >
                 {{ category }}
@@ -51,24 +51,34 @@ export default {
   props: {
     callbackSuccess: Function,
     callbackFailure: Function,
-    show: Boolean
+    show: Boolean,
+    account: String
   },
   components: {
     Keyboard
   },
   methods: {
+    selectCategory (category) {
+      this.selectedCategory = category
+      this.showKeyboard = true
+    },
     close () {
       this.callbackFailure()
     },
     confirm (result) {
       if (result) this.result = result
-      console.log(this.result)
+      this.$store.dispatch('addPayment', {
+        account: this.account,
+        category: this.selectedCategory,
+        value: parseInt(this.result * 100) / 100
+      })
       this.callbackSuccess()
     }
   },
   data () {
     return {
       showKeyboard: false,
+      selectedCategory: undefined,
       result: 0
     }
   },

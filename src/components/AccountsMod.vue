@@ -27,6 +27,7 @@
                   :name="item"
                   :color="$store.state.accounts[item].color"
                   :icon="$store.state.accounts[item].icon"
+                  :total="$store.state.accounts[item].total"
                   :callbackDelete="showAccountDeleteModal(item)"
                   :callbackEdit="editAccount(item)"
                 />

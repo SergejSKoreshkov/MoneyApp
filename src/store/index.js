@@ -3,30 +3,34 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
+export const load = (type) => {
+  try {
+    return JSON.parse(window.localStorage.getItem(type))
+  } catch {
+    return {}
+  }
+}
+
+export const save = (type, object) => {
+  try {
+    window.localStorage.setItem(type, JSON.stringify(object))
+  } catch {}
+}
+
+// Cash: { icon: 'mdi-currency-usd', color: 'green', total: 1000 },
+// Car: { icon: 'mdi-car', color: 'amber', total: 123 },
+// { category: 'Car', account: 'Cash', total: 2.43, time: Date.now() },
+const accounts = load('accounts') || {}
+const categories = load('categories') || {}
+const history = load('history') || []
+const settings = load('settings') || {}
+
 export default new Vuex.Store({
   state: {
-    accounts: {
-      Cash: { icon: 'mdi-currency-usd', color: 'green', total: 1000 },
-      Swedbank: { icon: 'mdi-credit-card', color: 'orange', total: 1000 },
-      Revolut: { icon: 'mdi-power-socket-eu', color: 'indigo', total: 1000 },
-      Stocks: { icon: 'mdi-plus', color: 'amber', total: 1000 }
-    },
-    categories: {
-      Car: { icon: 'mdi-car', color: 'amber', total: 123 },
-      House: { icon: 'mdi-home', color: 'purple', total: 23 },
-      Pen: { icon: 'mdi-pen', color: 'lime', total: 123 },
-      Pencil: { icon: 'mdi-pencil', color: 'blue', total: 123 }
-    },
-    history: [
-      { category: 'Car', account: 'Cash', total: 123.43, time: Date.now() },
-      { category: 'Car', account: 'Cash', total: 2.43, time: Date.now() },
-      { category: 'Car', account: 'Cash', total: 5.43, time: Date.now() },
-      { category: 'Car', account: 'Cash', total: 1.43, time: Date.now() },
-      { category: 'House', account: 'Swedbank', total: 1.53, time: Date.now() }
-    ],
-    settings: {
-      theme: 1
-    },
+    accounts,
+    categories,
+    history,
+    settings,
     isNavBarOpen: false
   },
   mutations: {
@@ -45,13 +49,18 @@ export default new Vuex.Store({
       commit('changeCategoryTotal', { category, value })
       commit('changeAccountTotal', { account, value })
       state.history.push({
-        category: state.categories[category],
+        category,
+        account,
         value,
         time: Date.now()
       })
+      save('accounts', state.accounts)
+      save('categories', state.categories)
+      save('history', state.history)
     },
     addAccount ({ state }, { name, color, icon }) {
       state.accounts[name] = { color, icon, total: 0 }
+      save('accounts', state.accounts)
     },
     editAccount ({ state }, { name, newName, color, icon }) {
       const buffer = { ...state.accounts[name] }
@@ -65,6 +74,8 @@ export default new Vuex.Store({
         }
         return el
       })
+      save('accounts', state.accounts)
+      save('history', state.history)
     },
     removeAccount ({ state }, { name }) {
       delete state.accounts[name]
@@ -73,9 +84,12 @@ export default new Vuex.Store({
           delete state.accounts[index]
         }
       })
+      save('accounts', state.accounts)
+      save('history', state.history)
     },
     addCategory ({ state }, { name, color, icon }) {
       state.categories[name] = { color, icon, total: 0 }
+      save('categories', state.categories)
     },
     editCategory ({ state }, { name, newName, color, icon }) {
       const buffer = { ...state.categories[name] }
@@ -89,6 +103,8 @@ export default new Vuex.Store({
         }
         return el
       })
+      save('categories', state.categories)
+      save('history', state.history)
     },
     removeCategory ({ state }, { name }) {
       delete state.categories[name]
@@ -96,6 +112,15 @@ export default new Vuex.Store({
         if (el.category === name) {
           delete state.history[index]
         }
+      })
+      save('categories', state.categories)
+      save('history', state.history)
+    },
+    setTheme ({ state }, { theme }) {
+      state.settings.theme = theme
+      save('settings', {
+        ...state.settings,
+        theme
       })
     }
   },

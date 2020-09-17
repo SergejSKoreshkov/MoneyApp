@@ -16,7 +16,7 @@
                 </v-col>
             </v-row>
         </v-card>
-        <v-card class="w100 ml-2 text-center">
+        <v-card @click="showSpendings" class="w100 ml-2 text-center">
             <v-row>
                 <v-col cols="12">
                     <v-card-title class="d-block pl-1 pr-1 subtitle-1 font-weight-medium">4000.00$</v-card-title>
@@ -29,7 +29,12 @@
 
 <script>
 export default {
-  name: 'TotalBalance'
+  name: 'TotalBalance',
+  methods: {
+    showSpendings () {
+      this.$router.push('/spendings')
+    }
+  }
 }
 </script>
 

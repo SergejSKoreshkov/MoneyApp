@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-content
+    <v-main
       v-touch="{
         left: () => swipe(false),
         right: () => swipe(true),
@@ -8,7 +8,7 @@
     >
       <AppBar/>
       <router-view></router-view>
-    </v-content>
+    </v-main>
   </v-app>
 </template>
 
@@ -26,7 +26,7 @@ export default {
     }
   },
   mounted () {
-    this.$vuetify.theme.dark = this.$store.state.settings.theme === 1
+    this.$vuetify.theme.dark = this.$store.state.settings.theme
   }
 }
 </script>

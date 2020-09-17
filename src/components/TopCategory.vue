@@ -34,7 +34,7 @@ export default {
     topCategories () {
       const filteredCategories = []
       const history = this.$store.state.history
-      return history
+      const x = history
         .sort((a, b) => {
           return a.total - b.total
         })
@@ -50,9 +50,11 @@ export default {
             last: this.$store.state.history
               .sort((a, b) => a.time - b.time)
               .find(transaction => transaction.category === el.category)
-              .total
+              .value
           }
         })
+      console.log(x)
+      return x
     }
   },
   components: {

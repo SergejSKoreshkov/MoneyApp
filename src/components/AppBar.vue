@@ -14,7 +14,7 @@
                         <img src="@/assets/avatar.jpg">
                     </v-list-item-avatar>
                     <v-list-item-content>
-                        <v-list-item-title>4000.00$</v-list-item-title>
+                        <v-list-item-title>{{ totalBalance.toFixed(2) }}$</v-list-item-title>
                         <v-list-item-subtitle>Total balance</v-list-item-subtitle>
                     </v-list-item-content>
                 </v-list-item>
@@ -57,6 +57,9 @@ export default {
   computed: {
     showLocal () {
       return this.show
+    },
+    totalBalance () {
+      return this.$store.state.history.reduce((acc, el) => el.total + acc, 0)
     }
   },
   data () {

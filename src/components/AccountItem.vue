@@ -2,7 +2,7 @@
     <div>
         <AddModal
           :color="color"
-          :title="name"
+          :account="name"
           :icon="icon"
           :show="showModal"
           :callbackFailure="() => showModal = false"
@@ -51,11 +51,6 @@ export default {
   methods: {
     addAccount () {
       this.showModal = true
-      // this.$store.dispatch('addAccount', {
-      //   account: this.name,
-      //   category: 'Car',
-      //   value: 100
-      // })
     }
   }
 }
