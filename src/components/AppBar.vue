@@ -59,7 +59,7 @@ export default {
       return this.show
     },
     totalBalance () {
-      return this.$store.state.history.reduce((acc, el) => el.total + acc, 0)
+      return this.$store.state.history.reduce((acc, el) => acc - el.value, 0)
     }
   },
   data () {

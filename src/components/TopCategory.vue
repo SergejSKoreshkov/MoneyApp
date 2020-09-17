@@ -34,27 +34,28 @@ export default {
     topCategories () {
       const filteredCategories = []
       const history = this.$store.state.history
-      const x = history
+      return history
         .sort((a, b) => {
-          return a.total - b.total
+          return a.value < b.value ? 1 : -1
         })
         .filter((el, index) => {
           const isCategoryIncluded = filteredCategories.includes(el.category)
           filteredCategories.push(el.category)
-          return index < 5 && !isCategoryIncluded
+          return index < 5 && !isCategoryIncluded && this.$store.state.categories[el.category].total > 0
         })
         .map(el => {
           return {
             ...this.$store.state.categories[el.category],
             name: el.category,
             last: this.$store.state.history
-              .sort((a, b) => a.time - b.time)
-              .find(transaction => transaction.category === el.category)
+              .sort((a, b) => b.time - a.time)
+              .find(transaction =>
+                transaction.category === el.category &&
+                transaction.value >= 0
+              )
               .value
           }
         })
-      console.log(x)
-      return x
     }
   },
   components: {

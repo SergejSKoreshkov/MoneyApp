@@ -1,5 +1,26 @@
 <template>
     <v-container class="pt-0 pb-0">
-        <v-progress-linear rounded value="50" color="green"></v-progress-linear>
+        <v-progress-linear rounded :value="incomeSpendingsRate" color="green"></v-progress-linear>
     </v-container>
 </template>
+
+<script>
+export default {
+  computed: {
+    incomeSpendingsRate () {
+      return this.income() / this.balance()
+    }
+  },
+  methods: {
+    spendings () {
+      return Math.abs(this.$store.state.history.filter(el => el.value >= 0).reduce((acc, el) => acc - el.value, 0))
+    },
+    income () {
+      return this.$store.state.history.filter(el => el.value < 0).reduce((acc, el) => acc - el.value, 0)
+    },
+    balance () {
+      return this.$store.state.history.reduce((acc, el) => acc - el.value, 0)
+    }
+  }
+}
+</script>
