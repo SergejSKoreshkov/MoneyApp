@@ -7,6 +7,26 @@
       >
         <v-card>
           <v-card-title>Select category</v-card-title>
+          <v-row class="ma-0">
+            <v-col cols="12" class="d-flex" style="justify-content: space-between;">
+              <v-btn
+                depressed
+                :class="selectIncome ? 'green--text' : 'grey--text'"
+                @click="selectIncome = true"
+              >
+                Income
+                <v-icon>mdi-plus</v-icon>
+              </v-btn>
+              <v-btn
+                depressed
+                :class="!selectIncome ? 'red--text' : 'grey--text'"
+                @click="selectIncome = false"
+              >
+                Spending
+                <v-icon>mdi-minus</v-icon>
+              </v-btn>
+            </v-col>
+          </v-row>
           <v-row class="pt-2 ma-0 scroll-mw-300">
             <v-col v-for="category in Object.keys($store.state.categories)" :key="category">
               <v-btn
@@ -31,7 +51,7 @@
             </v-btn>
             <v-btn
               text
-              @click="confirm"
+              @click="confirm()"
             >
               Confirm
             </v-btn>
@@ -67,10 +87,13 @@ export default {
     },
     confirm (result) {
       if (result) this.result = result
+      if (!this.result) return
+
       this.$store.dispatch('addPayment', {
         account: this.account,
         category: this.selectedCategory,
-        value: parseInt(this.result * 100) / 100
+        value: parseInt(this.result * 100) / 100,
+        type: this.selectIncome ? 'income' : 'spending'
       })
       this.callbackSuccess()
     }
@@ -79,6 +102,7 @@ export default {
     return {
       showKeyboard: false,
       selectedCategory: undefined,
+      selectIncome: false,
       result: 0
     }
   },

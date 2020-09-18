@@ -9441,6 +9441,11 @@ string-argv@^0.3.0:
   resolved "https://registry.yarnpkg.com/string-argv/-/string-argv-0.3.1.tgz#95e2fbec0427ae19184935f816d74aaa4c5c19da"
   integrity sha512-a1uQGz7IyVy9YwhqjZIZu1c8JO8dNIe20xBmSS6qu9kv++k3JGzCVmprbNN5Kn+BgzD5E7YYwg1CcjuJMRNsvg==
 
+string-calculator@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/string-calculator/-/string-calculator-1.0.1.tgz#e2e1767d13c8591574bdfd5776ce5f1644c8ec55"
+  integrity sha512-xBeyYvwGyUdtlRv+EFrxzh17TwXt2gWDIYKx8/jEB0rDVszp6ZeZNx9cw4BFADV9gMbgkfRjgM6QhQc4gvG8ZA==
+
 string-length@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/string-length/-/string-length-2.0.0.tgz#d40dbb686a3ace960c1cffca562bf2c45f8363ed"

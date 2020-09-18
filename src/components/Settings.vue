@@ -8,13 +8,13 @@
                     <v-icon>mdi-arrow-left</v-icon>
                 </v-btn>
             </v-card-title>
-            <v-card-actions>
-                <v-switch
-                    v-model="themeSwitchState"
-                    :label="`Switch theme to ${themeSwitchState ? 'Light' : 'Dark'}`"
-                    @change="switchTheme"
-                ></v-switch>
-            </v-card-actions>
+            <v-card-text>
+                <ThemeSwitch/>
+                <v-divider></v-divider>
+                <PeriodSelect/>
+                <v-divider></v-divider>
+                <CleanData/>
+            </v-card-text>
         </v-card>
         <BackButton :buttons="[{ label: 'back', icon: 'mdi-arrow-left', action: () => this.$router.go(-1) }]"/>
     </v-container>
@@ -22,22 +22,17 @@
 
 <script>
 import BackButton from '@/components/BackButton.vue'
+import ThemeSwitch from '@/components/Settings/ThemeSwitch.vue'
+import PeriodSelect from '@/components/Settings/PeriodSelect.vue'
+import CleanData from '@/components/Settings/CleanData.vue'
 
 export default {
   name: 'AppSettings',
-  methods: {
-    switchTheme () {
-      this.$store.dispatch('setTheme', { theme: this.themeSwitchState })
-      this.$vuetify.theme.dark = this.themeSwitchState
-    }
-  },
-  data () {
-    return {
-      themeSwitchState: !!this.$store.state.settings.theme
-    }
-  },
   components: {
-    BackButton
+    BackButton,
+    ThemeSwitch,
+    PeriodSelect,
+    CleanData
   }
 }
 </script>

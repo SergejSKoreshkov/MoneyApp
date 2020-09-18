@@ -14,16 +14,16 @@
         </v-list-item-avatar>
         <v-list-item-content>
             <v-list-item-subtitle>{{ name }}</v-list-item-subtitle>
-            <v-list-item-title>{{ (-total).toFixed(2)}}$</v-list-item-title>
+            <v-list-item-title>{{ total.toFixed(2)}}$</v-list-item-title>
         </v-list-item-content>
         <v-spacer></v-spacer>
         <v-list-item-action>
             <v-btn
               depressed
               :class="`${color}--text`"
-              @click="addAccount"
+              @click="addTransaction"
             >
-              <v-icon>mdi-plus</v-icon>
+              <v-icon>mdi-coin</v-icon>
             </v-btn>
         </v-list-item-action>
         </v-list-item>
@@ -49,7 +49,7 @@ export default {
     }
   },
   methods: {
-    addAccount () {
+    addTransaction () {
       this.showModal = true
     }
   }

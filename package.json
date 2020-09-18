@@ -15,6 +15,7 @@
     "cross-env": "^7.0.2",
     "less-loader": "^6.2.0",
     "roboto-fontface": "*",
+    "string-calculator": "^1.0.1",
     "string-math": "^1.2.2",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",

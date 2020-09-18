@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import * as stringMath from 'string-math'
+import * as stringMath from 'string-calculator'
 
 export default {
   name: 'Keyboard',
@@ -36,7 +36,9 @@ export default {
       this.text = this.text.slice(0, -1)
     },
     calc () {
-      this.text = stringMath(this.text).toString()
+      try {
+        this.text = Math.abs(stringMath(this.text)).toFixed(2)
+      } catch {}
     },
     save () {
       this.calc()
@@ -62,7 +64,7 @@ export default {
         { text: '=', action: this.calc },
         { text: '.', action: this.add('.') },
         { text: '0', action: this.add('0') },
-        { icon: 'mdi-backspace-outline', action: this.remove },
+        { icon: 'mdi-backspace', action: this.remove },
         { icon: 'mdi-check-circle-outline', action: this.save }
       ]
     }

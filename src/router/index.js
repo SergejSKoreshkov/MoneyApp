@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 import Main from '../views/Main.vue'
 import Categories from '../views/Categories.vue'
 import Accounts from '../views/Accounts.vue'
-import Settings from '../views/Settings.vue'
+import AppSettings from '../views/AppSettings.vue'
 import AddOrEdit from '../views/AddOrEdit.vue'
 import Spendings from '../views/Spendings.vue'
 
@@ -27,8 +27,8 @@ const routes = [
   },
   {
     path: '/settings',
-    name: 'Settings',
-    component: Settings
+    name: 'AppSettings',
+    component: AppSettings
   },
   {
     path: '/addOrEdit',

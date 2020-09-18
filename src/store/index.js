@@ -45,13 +45,14 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    addPayment ({ commit, state }, { account, category, value }) {
+    addPayment ({ commit, state }, { account, category, value, type }) {
       commit('changeCategoryTotal', { category, value })
       commit('changeAccountTotal', { account, value })
       state.history.push({
         category,
         account,
         value,
+        type,
         time: Date.now()
       })
       save('accounts', state.accounts)
@@ -118,10 +119,11 @@ export default new Vuex.Store({
     },
     setTheme ({ state }, { theme }) {
       state.settings.theme = theme
-      save('settings', {
-        ...state.settings,
-        theme
-      })
+      save('settings', state.settings)
+    },
+    setPeriod ({ state }, { period }) {
+      state.settings.period = period
+      save('settings', state.settings)
     }
   },
   modules: {
