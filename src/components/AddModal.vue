@@ -92,8 +92,8 @@ export default {
       this.$store.dispatch('addPayment', {
         account: this.account,
         category: this.selectedCategory,
-        value: parseInt(this.result * 100) / 100,
-        type: this.selectIncome ? 'income' : 'spending'
+        type: this.selectIncome ? 'income' : 'spending',
+        total: parseInt(this.result * 100) / 100
       })
       this.callbackSuccess()
     }

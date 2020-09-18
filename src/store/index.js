@@ -25,6 +25,29 @@ const categories = load('categories') || {}
 const history = load('history') || []
 const settings = load('settings') || {}
 
+/**
+ *
+ * @param {String} name
+ * @param {String} icon
+ * @param {String} color
+ */
+const createAccount = (name = 'Empty', icon = 'mdi-alert-circle', color = 'amber') => ({ name, icon, color, total: 0 })
+/**
+ *
+ * @param {String} name
+ * @param {String} icon
+ * @param {String} color
+ */
+const createCategory = (name = 'Empty', icon = 'mdi-alert-circle', color = 'amber') => ({ name, icon, color, total: 0 })
+/**
+ *
+ * @param {String} account
+ * @param {String} category
+ * @param {String} type
+ * @param {Number} total
+ */
+const createHistory = (account = 'Empty', category = 'Empty', type = 'spending', total = 0) => ({ account, category, type, total, time: Date.now() })
+
 export default new Vuex.Store({
   state: {
     accounts,
@@ -45,22 +68,16 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    addPayment ({ commit, state }, { account, category, value, type }) {
-      commit('changeCategoryTotal', { category, value })
-      commit('changeAccountTotal', { account, value })
-      state.history.push({
-        category,
-        account,
-        value,
-        type,
-        time: Date.now()
-      })
+    addPayment ({ commit, state }, { account, category, type, total }) {
+      commit('changeCategoryTotal', { category, total })
+      commit('changeAccountTotal', { account, total })
+      state.history.push(createHistory(account, category, type, total))
       save('accounts', state.accounts)
       save('categories', state.categories)
       save('history', state.history)
     },
-    addAccount ({ state }, { name, color, icon }) {
-      state.accounts[name] = { color, icon, total: 0 }
+    addAccount ({ state }, { name, icon, color }) {
+      state.accounts[name] = createAccount(name, icon, color)
       save('accounts', state.accounts)
     },
     editAccount ({ state }, { name, newName, color, icon }) {
@@ -70,8 +87,8 @@ export default new Vuex.Store({
       state.accounts[newName].color = color
       state.accounts[newName].icon = icon
       state.history = state.history.map(el => {
-        if (el.accounts === name) {
-          el.accounts = newName
+        if (el.account === name) {
+          el.account = newName
         }
         return el
       })
@@ -80,16 +97,14 @@ export default new Vuex.Store({
     },
     removeAccount ({ state }, { name }) {
       delete state.accounts[name]
-      state.history.map((el, index) => {
-        if (el.accounts === name) {
-          delete state.accounts[index]
-        }
+      state.history = state.history.filter((el, index) => {
+        return el.account !== name
       })
       save('accounts', state.accounts)
       save('history', state.history)
     },
-    addCategory ({ state }, { name, color, icon }) {
-      state.categories[name] = { color, icon, total: 0 }
+    addCategory ({ state }, { name, icon, color }) {
+      state.categories[name] = createCategory(name, icon, color)
       save('categories', state.categories)
     },
     editCategory ({ state }, { name, newName, color, icon }) {
@@ -109,10 +124,8 @@ export default new Vuex.Store({
     },
     removeCategory ({ state }, { name }) {
       delete state.categories[name]
-      state.history.map((el, index) => {
-        if (el.category === name) {
-          delete state.history[index]
-        }
+      state.history = state.history.map((el, index) => {
+        return el.category !== name
       })
       save('categories', state.categories)
       save('history', state.history)
