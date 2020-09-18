@@ -117,6 +117,18 @@ export default new Vuex.Store({
       save('categories', state.categories)
       save('history', state.history)
     },
+    cleanData ({ state }) {
+      state = {
+        accounts: {},
+        categories: {},
+        history: [],
+        settings: {}
+      }
+      save('accounts', state.accounts)
+      save('categories', state.categories)
+      save('history', state.history)
+      save('settings', state.settings)
+    },
     setTheme ({ state }, { theme }) {
       state.settings.theme = theme
       save('settings', state.settings)

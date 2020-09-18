@@ -11,10 +11,7 @@ export default {
   methods: {
     cleanData () {
       if (!confirm('Really?')) return
-      localStorage.removeItem('accounts')
-      localStorage.removeItem('categories')
-      localStorage.removeItem('history')
-      localStorage.removeItem('settings')
+      this.$store.dispatch('cleanData')
     }
   }
 }
