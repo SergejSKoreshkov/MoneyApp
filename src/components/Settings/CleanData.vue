@@ -11,10 +11,10 @@ export default {
   methods: {
     cleanData () {
       if (!confirm('Really?')) return
-      localStorage.setItem('accounts', undefined)
-      localStorage.setItem('categories', undefined)
-      localStorage.setItem('history', undefined)
-      localStorage.setItem('settings', undefined)
+      localStorage.removeItem('accounts')
+      localStorage.removeItem('categories')
+      localStorage.removeItem('history')
+      localStorage.removeItem('settings')
     }
   }
 }
