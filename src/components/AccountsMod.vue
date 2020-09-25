@@ -22,14 +22,14 @@
                 </v-btn>
             </v-col>
             <v-row>
-              <v-col class="pa-2 pt-1 pb-1" v-for="item in Object.keys($store.state.accounts)" :key="item" cols="12">
+              <v-col class="pa-2 pt-1 pb-1" v-for="item in $store.state.accounts" :key="item.name" cols="12">
                 <AccountItemMod
-                  :name="item"
-                  :color="$store.state.accounts[item].color"
-                  :icon="$store.state.accounts[item].icon"
-                  :total="$store.state.accounts[item].total"
-                  :callbackDelete="showAccountDeleteModal(item)"
-                  :callbackEdit="editAccount(item)"
+                  :name="item.name"
+                  :color="item.color"
+                  :icon="item.icon"
+                  :total="item.total"
+                  :callbackDelete="showAccountDeleteModal(item.name)"
+                  :callbackEdit="editAccount(item.name)"
                 />
               </v-col>
             </v-row>

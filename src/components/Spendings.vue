@@ -9,14 +9,15 @@
                 </v-btn>
             </v-card-title>
             <v-row>
-                <v-col class="pa-2 pt-1 pb-1" v-for="category in categories" :key="category.name" cols="12">
+                <v-col class="pa-2 pt-1 pb-1" v-for="category in history" :key="category.time" cols="12">
                     <CategoryItem
                         :name="category.name"
                         :icon="category.icon"
                         :color="category.color"
                         :total="category.total"
-                        :last="category.last"
+                        :time="category.time"
                     />
+                    <v-divider v-show="'TODO'"></v-divider>
                 </v-col>
             </v-row>
         </v-card>
@@ -35,28 +36,15 @@ export default {
     BackButton
   },
   computed: {
-    categories () {
-      const filteredCategories = []
-      const history = this.$store.state.history
-      return history
-        .sort((a, b) => {
-          return a.value - b.value
-        })
-        .filter((el, index) => {
-          const isCategoryIncluded = filteredCategories.includes(el.category)
-          filteredCategories.push(el.category)
-          return !isCategoryIncluded
-        })
-        .map(el => {
-          return {
-            ...this.$store.state.categories[el.category],
-            name: el.category,
-            last: this.$store.state.history
-              .sort((a, b) => b.time - a.time)
-              .find(transaction => transaction.category === el.category)
-              .value
-          }
-        })
+    history () {
+      return this.$store.state.history
+        .filter(el => el.type === 'spending')
+        .sort((a, b) => a.time - b.time)
+        .map(el => ({
+          ...this.$store.state.categories[el.category],
+          time: el.time,
+          total: el.total
+        }))
     }
   }
 }

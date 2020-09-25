@@ -13,13 +13,13 @@ export default {
   },
   methods: {
     spendings () {
-      return Math.abs(this.$store.state.history.filter(el => el.value >= 0).reduce((acc, el) => acc - el.value, 0))
+      return Math.abs(this.$store.state.history.filter(el => el.type === 'spending').reduce((acc, el) => acc + el.total, 0))
     },
     income () {
-      return this.$store.state.history.filter(el => el.value < 0).reduce((acc, el) => acc - el.value, 0)
+      return this.$store.state.history.filter(el => el.type === 'income').reduce((acc, el) => acc + el.total, 0)
     },
     balance () {
-      return this.$store.state.history.reduce((acc, el) => acc - el.value, 0)
+      return this.$store.state.history.reduce((acc, el) => acc - el.total, 0)
     }
   }
 }

@@ -20,12 +20,12 @@
                 </v-list-item>
                 <v-divider></v-divider>
                 <AccountsNavItem
-                    v-for="item in Object.keys($store.state.accounts)"
-                    :key="item"
-                    :name="item"
-                    :color="$store.state.accounts[item].color"
-                    :icon="$store.state.accounts[item].icon"
-                    :total="$store.state.accounts[item].total"
+                    v-for="item in $store.state.accounts"
+                    :key="item.name"
+                    :name="item.name"
+                    :color="item.color"
+                    :icon="item.icon"
+                    :total="item.total"
                 />
             </v-list>
 
@@ -59,7 +59,7 @@ export default {
       return this.show
     },
     totalBalance () {
-      return this.$store.state.history.reduce((acc, el) => acc - el.value, 0)
+      return this.$store.state.history.reduce((acc, el) => acc + el.total, 0)
     }
   },
   data () {

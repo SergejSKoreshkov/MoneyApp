@@ -57,11 +57,11 @@ export default new Vuex.Store({
     isNavBarOpen: false
   },
   mutations: {
-    changeCategoryTotal (state, { category, value }) {
-      state.categories[category].total += value
+    changeCategoryTotal (state, { category, total, type }) {
+      state.categories[category].total += type === 'spending' ? -total : total
     },
-    changeAccountTotal (state, { account, value }) {
-      state.accounts[account].total += value
+    changeAccountTotal (state, { account, total, type }) {
+      state.accounts[account].total += type === 'spending' ? -total : total
     },
     setIsNavBarOpen (state, newState) {
       state.isNavBarOpen = newState
@@ -69,8 +69,8 @@ export default new Vuex.Store({
   },
   actions: {
     addPayment ({ commit, state }, { account, category, type, total }) {
-      commit('changeCategoryTotal', { category, total })
-      commit('changeAccountTotal', { account, total })
+      commit('changeCategoryTotal', { category, total, type })
+      commit('changeAccountTotal', { account, total, type })
       state.history.push(createHistory(account, category, type, total))
       save('accounts', state.accounts)
       save('categories', state.categories)
@@ -131,12 +131,10 @@ export default new Vuex.Store({
       save('history', state.history)
     },
     cleanData ({ state }) {
-      state = {
-        accounts: {},
-        categories: {},
-        history: [],
-        settings: {}
-      }
+      state.history = []
+      state.accounts = {}
+      state.categories = {}
+      state.settings = {}
       save('accounts', state.accounts)
       save('categories', state.categories)
       save('history', state.history)

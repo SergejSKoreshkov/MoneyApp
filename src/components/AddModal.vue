@@ -28,15 +28,15 @@
             </v-col>
           </v-row>
           <v-row class="pt-2 ma-0 scroll-mw-300">
-            <v-col v-for="category in Object.keys($store.state.categories)" :key="category">
+            <v-col v-for="category in $store.state.categories" :key="category.name">
               <v-btn
                 depressed
-                @click="selectCategory(category)"
-                :class="`${$store.state.categories[category].color}--text pa-1 w100`"
+                @click="selectCategory(category.name)"
+                :class="`${category.color}--text pa-1 w100`"
               >
-                {{ category }}
-                <v-icon :class="`${$store.state.categories[category].color}--text`">
-                  {{ $store.state.categories[category].icon }}
+                {{ category.name }}
+                <v-icon :class="`${category.color}--text`">
+                  {{ category.icon }}
                 </v-icon>
               </v-btn>
             </v-col>

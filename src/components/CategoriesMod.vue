@@ -22,13 +22,13 @@
                 </v-btn>
               </v-col>
             <v-row>
-              <v-col class="pa-2 pt-1 pb-1" v-for="item in Object.keys($store.state.categories)" :key="item" cols="12">
+              <v-col class="pa-2 pt-1 pb-1" v-for="item in $store.state.categories" :key="item" cols="12">
                 <CategoryItemMod
-                  :name="item"
-                  :icon="$store.state.categories[item].icon"
-                  :color="$store.state.categories[item].color"
-                  :callbackDelete="showCategoryDeleteModal(item)"
-                  :callbackEdit="editCategory(item)"
+                  :name="item.name"
+                  :icon="item.icon"
+                  :color="item.color"
+                  :callbackDelete="showCategoryDeleteModal(item.name)"
+                  :callbackEdit="editCategory(item.name)"
                 />
               </v-col>
             </v-row>

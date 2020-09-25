@@ -2,12 +2,12 @@
   <v-container>
     <v-card class="pa-1">
       <v-row class="text-center">
-        <v-col class="pa-2" v-for="item in Object.keys($store.state.accounts)" :key="item" cols="12">
+        <v-col class="pa-2" v-for="item in $store.state.accounts" :key="item.name" cols="12">
           <AccountItem
-            :color="$store.state.accounts[item].color"
-            :name="item"
-            :icon="$store.state.accounts[item].icon"
-            :total="$store.state.accounts[item].total"
+            :color="item.color"
+            :name="item.name"
+            :icon="item.icon"
+            :total="item.total"
           />
         </v-col>
       </v-row>
