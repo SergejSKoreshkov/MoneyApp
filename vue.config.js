@@ -2,5 +2,10 @@ module.exports = {
   transpileDependencies: [
     'vuetify'
   ],
-  publicPath: ''
-} 
+
+  publicPath: '',
+
+  pluginOptions: {
+    cordovaPath: 'src-cordova'
+  }
+}
