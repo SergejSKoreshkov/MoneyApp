@@ -13,7 +13,8 @@
                 <v-divider></v-divider>
                 <PeriodSelect/>
                 <v-divider></v-divider>
-                <CleanData/>
+                <Export/>
+                <Clean/>
             </v-card-text>
         </v-card>
         <BackButton :buttons="[{ label: 'back', icon: 'mdi-arrow-left', action: () => this.$router.go(-1) }]"/>
@@ -24,7 +25,8 @@
 import BackButton from '@/components/BackButton.vue'
 import ThemeSwitch from '@/components/Settings/ThemeSwitch.vue'
 import PeriodSelect from '@/components/Settings/PeriodSelect.vue'
-import CleanData from '@/components/Settings/CleanData.vue'
+import Export from '@/components/Settings/Export.vue'
+import Clean from '@/components/Settings/Clean.vue'
 
 export default {
   name: 'AppSettings',
@@ -32,7 +34,8 @@ export default {
     BackButton,
     ThemeSwitch,
     PeriodSelect,
-    CleanData
+    Export,
+    Clean
   }
 }
 </script>

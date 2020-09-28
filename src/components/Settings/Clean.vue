@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  name: 'CleanData',
+  name: 'Clean',
   methods: {
     cleanData () {
       if (!confirm('Really?')) return
