@@ -14,7 +14,7 @@ export default {
         const textData = JSON.stringify(this.$store.state)
         const blob = new Blob([textData], { type: 'text/plain' })
         const link = document.createElement('a')
-        link.download = 'test.json'
+        link.download = `money_app_${new Date().toISOString()}.json`
         link.href = window.URL.createObjectURL(blob)
         link.dataset.downloadurl = ['text/json', link.download, link.href].join(':')
         link.click()
