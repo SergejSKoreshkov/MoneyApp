@@ -28,7 +28,7 @@
             </v-col>
           </v-row>
           <v-row class="pt-2 ma-0 scroll-mw-300">
-            <v-col v-for="(category, key, index) in $store.state.categories" :key="category.name">
+            <v-col cols="3" class="text-center" v-for="(category, key, index) in $store.state.categories" :key="category.name">
               <v-badge
                 :value="category.name === selectedCategory"
                 :color="category.color"
@@ -37,9 +37,9 @@
                 transition="slide-y-transition"
               >
                   <v-btn
-                    depressed
+                    icon
                     @click="selectCategory(category.name)"
-                    :class="`${category.color}--text pa-1 w100`"
+                    :class="`${category.color}--text`"
                   >
                     <v-icon :class="`${category.color}--text`">
                       {{ category.icon }}
