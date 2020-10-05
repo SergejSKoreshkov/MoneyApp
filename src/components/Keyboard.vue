@@ -43,6 +43,7 @@ export default {
     save () {
       this.calc()
       this.callbackSave(parseFloat(this.text))
+      this.text = ''
     }
   },
   data () {

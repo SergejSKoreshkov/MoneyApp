@@ -28,17 +28,24 @@
             </v-col>
           </v-row>
           <v-row class="pt-2 ma-0 scroll-mw-300">
-            <v-col v-for="category in $store.state.categories" :key="category.name">
-              <v-btn
-                depressed
-                @click="selectCategory(category.name)"
-                :class="`${category.color}--text pa-1 w100`"
+            <v-col v-for="(category, key, index) in $store.state.categories" :key="category.name">
+              <v-badge
+                :value="category.name === selectedCategory"
+                :color="category.color"
+                :content="category.name"
+                :left="(index % 4) > 1"
+                transition="slide-y-transition"
               >
-                {{ category.name }}
-                <v-icon :class="`${category.color}--text`">
-                  {{ category.icon }}
-                </v-icon>
-              </v-btn>
+                  <v-btn
+                    depressed
+                    @click="selectCategory(category.name)"
+                    :class="`${category.color}--text pa-1 w100`"
+                  >
+                    <v-icon :class="`${category.color}--text`">
+                      {{ category.icon }}
+                    </v-icon>
+                  </v-btn>
+              </v-badge>
             </v-col>
           </v-row>
           <v-card-actions>
@@ -93,7 +100,7 @@ export default {
         account: this.account,
         category: this.selectedCategory,
         type: this.selectIncome ? 'income' : 'spending',
-        total: parseInt(this.result * 100) / 100
+        total: this.result
       })
       this.callbackSuccess()
     }
@@ -114,12 +121,15 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
  .v-dialog__content {
    align-items: flex-start;
  }
  .scroll-mw-300 {
    overflow-y: auto;
    max-height: 34vh;
+ }
+ .v-badge__badge {
+   z-index: 999;
  }
 </style>
