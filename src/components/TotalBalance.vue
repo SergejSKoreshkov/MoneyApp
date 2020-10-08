@@ -1,6 +1,6 @@
 <template>
     <v-container class="d-flex justify-space-between">
-        <v-card class="w100 mr-2 text-center">
+        <v-card @click="showIncome" class="w100 mr-2 text-center">
             <v-row>
                 <v-col cols="12">
                     <v-card-title class="d-block pl-1 pr-1 subtitle-1 font-weight-medium">{{ income.toFixed(2) }}</v-card-title>
@@ -8,7 +8,7 @@
                 </v-col>
             </v-row>
         </v-card>
-        <v-card class="w100 ml-1 mr-1 text-center">
+        <v-card @click="showBalance" class="w100 ml-1 mr-1 text-center">
             <v-row>
                 <v-col cols="12">
                     <v-card-title class="d-block pl-1 pr-1 subtitle-1 font-weight-medium">{{ balance.toFixed(2) }}</v-card-title>
@@ -44,6 +44,12 @@ export default {
   methods: {
     showSpendings () {
       this.$router.push('/spendings')
+    },
+    showIncome () {
+      this.$router.push('/income')
+    },
+    showBalance () {
+      this.$router.push('/balance')
     }
   }
 }

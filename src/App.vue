@@ -41,4 +41,7 @@ export default {
   .w45 {
     width: 45% !important;
   }
+  .justify-space-evenly {
+    justify-content: space-evenly;
+  }
 </style>

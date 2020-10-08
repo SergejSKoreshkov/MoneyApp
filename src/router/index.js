@@ -6,6 +6,8 @@ import Accounts from '../views/Accounts.vue'
 import AppSettings from '../views/AppSettings.vue'
 import AddOrEdit from '../views/AddOrEdit.vue'
 import Spendings from '../views/Spendings.vue'
+import Income from '../views/Income.vue'
+import Balance from '../views/Balance.vue'
 
 Vue.use(VueRouter)
 
@@ -39,6 +41,16 @@ const routes = [
     path: '/spendings',
     name: 'Spendings',
     component: Spendings
+  },
+  {
+    path: '/income',
+    name: 'Income',
+    component: Income
+  },
+  {
+    path: '/balance',
+    name: 'Balance',
+    component: Balance
   }
 ]
 

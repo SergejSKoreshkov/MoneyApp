@@ -2,7 +2,7 @@
     <v-container>
         <v-card class="pa-1">
             <v-card-title>
-                Spendings
+                Income
                 <v-spacer></v-spacer>
                 <v-btn icon @click="$router.go(-1)">
                     <v-icon>mdi-arrow-left</v-icon>
@@ -39,7 +39,7 @@ export default {
   computed: {
     history () {
       return this.$store.state.history
-        .filter(el => el.type === 'spending')
+        .filter(el => el.type === 'income')
         .sort((a, b) => b.time - a.time)
         .map(el => ({
           ...this.$store.state.categories[el.category],
