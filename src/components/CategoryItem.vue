@@ -20,8 +20,8 @@
             </v-list-item>
         </template>
 
-        <v-card v-if="enableMenu">
-          <v-card-actions class="justify-space-evenly">
+        <v-card v-if="enableMenu" class="secondary darken-2 rounded-0">
+          <v-card-actions class="justify-space-evenly rounded-0">
             <v-btn :class="`${color}--text`" text @click="menu = false">
               Edit <v-icon>mdi-pen</v-icon>
             </v-btn>
@@ -59,3 +59,9 @@ export default {
   }
 }
 </script>
+
+<style>
+ .rounded-0, .v-menu__content {
+   border-radius: 0 0 5px 5px !important;
+ }
+</style>
