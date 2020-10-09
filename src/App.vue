@@ -69,4 +69,7 @@ export default {
     right: 0;
     background: linear-gradient(-25deg, #e7c1cd, #c6caf1, #ffffffaa, #ffffffaa, #fff);
   }
+  .theme--dark.v-card {
+    background-color: #131313!important;
+  }
 </style>
