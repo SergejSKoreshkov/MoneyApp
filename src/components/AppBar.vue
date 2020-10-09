@@ -7,6 +7,8 @@
         <v-navigation-drawer
             v-model="$store.state.isNavBarOpen"
             absolute
+            :dark="$vuetify.theme.dark"
+            :class="`main-${$vuetify.theme.dark ? 'dark' : 'light'}`"
         >
             <v-list>
                 <v-list-item two-line>
