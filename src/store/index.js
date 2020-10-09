@@ -23,6 +23,10 @@ export const save = (type, object) => {
 const accounts = load('accounts') || {}
 const categories = load('categories') || {}
 const history = load('history') || []
+const balance = load('balance') || {
+  max: 0,
+  total: 0
+}
 const settings = load('settings') || {}
 
 /**
@@ -53,6 +57,7 @@ export default new Vuex.Store({
     accounts,
     categories,
     history,
+    balance,
     settings,
     isNavBarOpen: false
   },
@@ -72,9 +77,12 @@ export default new Vuex.Store({
       commit('changeCategoryTotal', { category, total, type })
       commit('changeAccountTotal', { account, total, type })
       state.history.push(createHistory(account, category, type, total))
+      state.balance.total = state.history.reduce((acc, el) => acc + (el.type === 'spending' ? -el.total : el.total), 0)
+      state.balance.max = Math.max(state.balance.max, state.balance.total)
       save('accounts', state.accounts)
       save('categories', state.categories)
       save('history', state.history)
+      save('balance', state.balance)
     },
     addAccount ({ state }, { name, icon, color }) {
       state.accounts[name] = createAccount(name, icon, color)
