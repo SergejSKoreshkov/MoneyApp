@@ -10,9 +10,8 @@
             </v-card-title>
             <v-card-text>
                 <ThemeSwitch/>
-                <v-divider></v-divider>
                 <PeriodSelect/>
-                <v-divider></v-divider>
+                <CurrencySelect/>
                 <Export/>
                 <Clean/>
             </v-card-text>
@@ -25,6 +24,7 @@
 import BackButton from '@/components/BackButton.vue'
 import ThemeSwitch from '@/components/Settings/ThemeSwitch.vue'
 import PeriodSelect from '@/components/Settings/PeriodSelect.vue'
+import CurrencySelect from '@/components/Settings/CurrencySelect.vue'
 import Export from '@/components/Settings/Export.vue'
 import Clean from '@/components/Settings/Clean.vue'
 
@@ -34,6 +34,7 @@ export default {
     BackButton,
     ThemeSwitch,
     PeriodSelect,
+    CurrencySelect,
     Export,
     Clean
   }

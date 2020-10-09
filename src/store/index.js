@@ -147,6 +147,11 @@ export default new Vuex.Store({
     setPeriod ({ state }, { period }) {
       state.settings.period = period
       save('settings', state.settings)
+    },
+    setCurrency ({ state }, { currency }) {
+      state.settings.currency = currency
+      save('settings', state.settings)
+      console.log(state)
     }
   },
   modules: {

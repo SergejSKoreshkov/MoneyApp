@@ -46,19 +46,19 @@ export default {
     justify-content: space-evenly;
   }
   .main-dark {
-    background: radial-gradient(#551614, #000)
+    background: radial-gradient(#3d1455, #000)
   }
   .main-dark::before {
     content: '';
     position: fixed;
     top: 0;
-    bottom: 0;
+    height: 100vh;
     left: 0;
     right: 0;
-    background: linear-gradient(-25deg, #70263e, #0a0c20, #000000aa, #000000aa, #000);
+    background: linear-gradient(-25deg, #0a0c20, #000000aa, #000000aa, #0a0c20);
   }
   .main-light {
-    background: radial-gradient(#b45271, #fff)
+    background: radial-gradient(#7852b4, #fff)
   }
   .main-light::before {
     content: '';
@@ -67,9 +67,9 @@ export default {
     bottom: 0;
     left: 0;
     right: 0;
-    background: linear-gradient(-25deg, #e7c1cd, #c6caf1, #ffffffaa, #ffffffaa, #fff);
+    background: linear-gradient(-25deg, #99a1ff, #ffffffaa, #ffffffaa, #c1c6ff);
   }
-  .theme--dark.v-card {
+  .theme--dark.v-card, .theme--dark.v-app-bar, .theme--dark.v-btn {
     background-color: #131313!important;
   }
 </style>

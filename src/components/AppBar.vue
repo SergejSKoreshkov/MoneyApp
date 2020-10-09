@@ -16,7 +16,7 @@
                         <img src="@/assets/avatar.jpg">
                     </v-list-item-avatar>
                     <v-list-item-content>
-                        <v-list-item-title>{{ balance.toFixed(2) }}$</v-list-item-title>
+                        <v-list-item-title>{{ balance.toFixed(2) + curr }}</v-list-item-title>
                         <v-list-item-subtitle>Total balance</v-list-item-subtitle>
                     </v-list-item-content>
                 </v-list-item>
@@ -57,6 +57,9 @@ import AccountsNavItem from '@/components/AccountsNavItem'
 
 export default {
   computed: {
+    curr () {
+      return ' ' + this.$store.state.settings.currency
+    },
     showLocal () {
       return this.show
     },

@@ -14,7 +14,7 @@
         </v-list-item-avatar>
         <v-list-item-content>
             <v-list-item-subtitle>{{ name }}</v-list-item-subtitle>
-            <v-list-item-title>{{ total.toFixed(2)}}$</v-list-item-title>
+            <v-list-item-title>{{ total.toFixed(2) + curr }}</v-list-item-title>
         </v-list-item-content>
         <v-spacer></v-spacer>
         <v-list-item-action>
@@ -46,6 +46,11 @@ export default {
   data () {
     return {
       showModal: false
+    }
+  },
+  computed: {
+    curr () {
+      return ' ' + this.$store.state.settings.currency
     }
   },
   methods: {

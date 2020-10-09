@@ -15,12 +15,12 @@
                 <v-list-item-subtitle>{{ lastTransactionOrDate }}</v-list-item-subtitle>
             </v-list-item-content>
             <v-list-item-action>
-                <span>{{ total.toFixed(2) }}</span>
+                <span>{{ total.toFixed(2) + curr }}</span>
             </v-list-item-action>
             </v-list-item>
         </template>
 
-        <v-card v-if="enableMenu" class="secondary darken-2 rounded-0">
+        <v-card v-if="enableMenu" class="rounded-0">
           <v-card-actions class="justify-space-evenly rounded-0">
             <v-btn :class="`${color}--text`" text @click="menu = false">
               Edit <v-icon>mdi-pen</v-icon>
@@ -47,9 +47,12 @@ export default {
   },
   computed: {
     lastTransactionOrDate () {
-      if (this.last) return 'Last: ' + this.last.toFixed(2) + '$'
+      if (this.last) return 'Last: ' + this.last.toFixed(2) + this.curr
       else if (this.time) return new Date(this.time).toUTCString()
       return ''
+    },
+    curr () {
+      return ' ' + this.$store.state.settings.currency
     }
   },
   data () {
@@ -63,5 +66,8 @@ export default {
 <style>
  .rounded-0, .v-menu__content {
    border-radius: 0 0 5px 5px !important;
+ }
+ .v-menu__content {
+   background-color: #131313 !important;
  }
 </style>

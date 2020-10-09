@@ -38,6 +38,8 @@
               >
                   <v-btn
                     icon
+                    outlined
+                    fab
                     @click="selectCategory(category.name)"
                     :class="`${category.color}--text`"
                   >

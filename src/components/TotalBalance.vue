@@ -3,7 +3,7 @@
         <v-card @click="showIncome" class="w100 mr-2 text-center">
             <v-row>
                 <v-col cols="12">
-                    <v-card-title class="d-block pl-1 pr-1 subtitle-1 font-weight-medium">{{ income.toFixed(2) }}</v-card-title>
+                    <v-card-title class="d-block pl-1 pr-1 subtitle-1 font-weight-medium">{{ income.toFixed(2) + curr }}</v-card-title>
                     <v-card-subtitle>Income</v-card-subtitle>
                 </v-col>
             </v-row>
@@ -11,7 +11,7 @@
         <v-card @click="showBalance" class="w100 ml-1 mr-1 text-center">
             <v-row>
                 <v-col cols="12">
-                    <v-card-title class="d-block pl-1 pr-1 subtitle-1 font-weight-medium">{{ balance.toFixed(2) }}</v-card-title>
+                    <v-card-title class="d-block pl-1 pr-1 subtitle-1 font-weight-medium">{{ balance.toFixed(2) + curr }}</v-card-title>
                     <v-card-subtitle>Balance</v-card-subtitle>
                 </v-col>
             </v-row>
@@ -19,7 +19,7 @@
         <v-card @click="showSpendings" class="w100 ml-2 text-center">
             <v-row>
                 <v-col cols="12">
-                    <v-card-title class="d-block pl-1 pr-1 subtitle-1 font-weight-medium">{{ spendings.toFixed(2) }}</v-card-title>
+                    <v-card-title class="d-block pl-1 pr-1 subtitle-1 font-weight-medium">{{ spendings.toFixed(2) + curr }}</v-card-title>
                     <v-card-subtitle>Spendings</v-card-subtitle>
                 </v-col>
             </v-row>
@@ -31,6 +31,9 @@
 export default {
   name: 'TotalBalance',
   computed: {
+    curr () {
+      return ' ' + this.$store.state.settings.currency
+    },
     spendings () {
       return Math.abs(this.$store.state.history.filter(el => el.type === 'spending').reduce((acc, el) => acc + el.total, 0))
     },

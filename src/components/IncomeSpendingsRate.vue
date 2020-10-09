@@ -1,6 +1,6 @@
 <template>
     <v-container class="pt-0 pb-0">
-        <v-progress-linear rounded :value="incomeSpendingsRate" color="green"></v-progress-linear>
+        <v-progress-linear rounded :value="incomeSpendingsRate" color="purple"></v-progress-linear>
     </v-container>
 </template>
 
