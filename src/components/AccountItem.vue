@@ -20,6 +20,7 @@
         <v-list-item-action>
             <v-btn
               depressed
+              outlined
               :class="`${color}--text`"
               @click="addTransaction"
             >
