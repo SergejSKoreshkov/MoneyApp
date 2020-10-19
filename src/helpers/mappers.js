@@ -5,6 +5,7 @@ export function mapHistoryToCategories (
 ) {
   const filteredCategories = []
   return history
+    .filter(el => el.type !== 'transfer')
     .sort(sort === 'asc'
       ? (a, b) => categories[a.category].total - categories[b.category].total
       : (a, b) => categories[b.category].total - categories[a.category].total

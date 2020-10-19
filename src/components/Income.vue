@@ -13,11 +13,13 @@
                     <v-divider v-show="'TODO'"></v-divider>
                     <CategoryItem
                         :name="category.name"
+                        :account="category.account"
                         :icon="category.icon"
                         :color="category.color"
                         :total="category.total"
+                        :type="category.type"
                         :time="category.time"
-                        enableMenu="true"
+                        :enableMenu="true"
                     />
                 </v-col>
             </v-row>
@@ -38,13 +40,16 @@ export default {
   },
   computed: {
     history () {
-      return this.$store.state.history
+      console.log(this.$store.getters.history)
+      return this.$store.getters.history
         .filter(el => el.type === 'income')
         .sort((a, b) => b.time - a.time)
         .map(el => ({
           ...this.$store.state.categories[el.category],
           time: el.time,
-          total: el.total
+          total: el.total,
+          account: el.account,
+          type: el.type
         }))
     }
   }

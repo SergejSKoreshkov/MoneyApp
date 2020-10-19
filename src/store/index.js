@@ -23,11 +23,17 @@ export const save = (type, object) => {
 const accounts = load('accounts') || {}
 const categories = load('categories') || {}
 const history = load('history') || []
-const balance = load('balance') || {
+const balance = {
   max: 0,
-  total: 0
+  total: 0,
+  ...load('balance')
 }
-const settings = load('settings') || {}
+const settings = {
+  currency: '€',
+  period: 'All',
+  selectedDate: new Date(2020, 9, 10).getTime(),
+  ...load('settings')
+}
 
 /**
  *
@@ -61,6 +67,22 @@ export default new Vuex.Store({
     settings,
     isNavBarOpen: false
   },
+  getters: {
+    period: state => {
+      const selected = state.settings.selectedDate
+      switch (state.settings.period) {
+        case 'Year': return [selected, new Date(new Date(selected).getFullYear() + 1, 0, 1).getTime()]
+        case 'Month': return [selected, new Date(new Date(selected).getFullYear(), new Date(selected).getMonth() + 1, 1).getTime()]
+        case 'Day': return [selected, new Date(new Date(selected).getFullYear(), new Date(selected).getMonth(), new Date(selected).getDate() + 1).getTime()]
+        case 'All':
+        default: return [0, Date.now() + 1]
+      }
+    },
+    history: (state, getters) => {
+      const period = getters.period
+      return state.history.filter(el => el.time >= period[0] && el.time <= period[1])
+    }
+  },
   mutations: {
     changeCategoryTotal (state, { category, total, type }) {
       state.categories[category].total += type === 'spending' ? -total : total
@@ -74,11 +96,28 @@ export default new Vuex.Store({
   },
   actions: {
     addPayment ({ commit, state }, { account, category, type, total }) {
-      commit('changeCategoryTotal', { category, total, type })
-      commit('changeAccountTotal', { account, total, type })
-      state.history.push(createHistory(account, category, type, total))
+      if (type === 'transfer') {
+        commit('changeAccountTotal', { account, total, type: 'spending' })
+        commit('changeAccountTotal', { account: category, total, type: 'income' })
+        state.history.push(createHistory(account, category, type, total))
+      } else {
+        commit('changeCategoryTotal', { category, total, type })
+        commit('changeAccountTotal', { account, total, type })
+        state.history.push(createHistory(account, category, type, total))
+        state.balance.total = state.history.reduce((acc, el) => acc + (el.type === 'spending' ? -el.total : el.total), 0)
+        state.balance.max = Math.max(state.balance.max, state.balance.total)
+      }
+      save('accounts', state.accounts)
+      save('categories', state.categories)
+      save('history', state.history)
+      save('balance', state.balance)
+    },
+    removePayment ({ commit, state }, { account, category, type, total, time }) {
+      state.history = state.history.filter(el => el.account !== account || el.category !== category || el.type !== type || el.total !== total || el.time !== time)
+      commit('changeCategoryTotal', { category, total, type: 'spending' })
+      commit('changeAccountTotal', { account, total, type: 'spending' })
       state.balance.total = state.history.reduce((acc, el) => acc + (el.type === 'spending' ? -el.total : el.total), 0)
-      state.balance.max = Math.max(state.balance.max, state.balance.total)
+      state.balance.max = state.balance.max - total
       save('accounts', state.accounts)
       save('categories', state.categories)
       save('history', state.history)
@@ -159,7 +198,6 @@ export default new Vuex.Store({
     setCurrency ({ state }, { currency }) {
       state.settings.currency = currency
       save('settings', state.settings)
-      console.log(state)
     }
   },
   modules: {

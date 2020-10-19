@@ -6,31 +6,39 @@
         persistent
       >
         <v-card>
-          <v-card-title>Select category</v-card-title>
+          <v-card-title style="text-transform: capitalize;">{{ selectedTransactionType }}<v-icon>mdi-menu-right</v-icon>{{ selectedName }}</v-card-title>
           <v-row class="ma-0">
             <v-col cols="12" class="d-flex" style="justify-content: space-between;">
-              <v-btn
-                depressed
-                :class="selectIncome ? 'green--text' : 'grey--text'"
-                @click="selectIncome = true"
+              <v-badge
+                v-for="(item, index) in transactionTypes"
+                :key="item.type"
+                :value="selectedTransactionType === item.type"
+                :color="item.color"
+                :content="item.type"
+                :left="(index % 3) > 1"
+                transition="slide-y-transition"
               >
-                Income
-                <v-icon>mdi-plus</v-icon>
-              </v-btn>
-              <v-btn
-                depressed
-                :class="!selectIncome ? 'red--text' : 'grey--text'"
-                @click="selectIncome = false"
-              >
-                Spending
-                <v-icon>mdi-minus</v-icon>
-              </v-btn>
+                <v-btn
+                  depressed
+                  :class="selectedTransactionType === item.type ? `${item.color}--text` : 'grey--text'"
+                  @click="selectedTransactionType = item.type"
+                >
+                  <v-icon>{{ item.icon }}</v-icon>
+                </v-btn>
+              </v-badge>
             </v-col>
           </v-row>
-          <v-row class="pt-2 ma-0 scroll-mw-300">
-            <v-col cols="3" class="text-center" v-for="(category, key, index) in $store.state.categories" :key="category.name">
+          <v-row
+            v-if="selectedTransactionType !== 'transfer'"
+            class="pt-2 ma-0 scroll-mw-300"
+          >
+            <v-col
+              cols="3" class="text-center"
+              v-for="(category, key, index) in $store.state.categories"
+              :key="category.name"
+            >
               <v-badge
-                :value="category.name === selectedCategory"
+                :value="category.name === selectedName"
                 :color="category.color"
                 :content="category.name"
                 :left="(index % 4) > 1"
@@ -40,11 +48,42 @@
                     icon
                     outlined
                     fab
-                    @click="selectCategory(category.name)"
+                    @click="selectName(category.name)"
                     :class="`${category.color}--text`"
                   >
                     <v-icon :class="`${category.color}--text`">
                       {{ category.icon }}
+                    </v-icon>
+                  </v-btn>
+              </v-badge>
+            </v-col>
+          </v-row>
+          <v-row
+            v-else
+            class="pt-2 ma-0 scroll-mw-300"
+          >
+            <v-col
+              cols="3" class="text-center"
+              v-for="(accountItem, key, index) in $store.state.accounts"
+              v-show="accountItem.name !== account"
+              :key="accountItem.name"
+            >
+              <v-badge
+                :value="accountItem.name === selectedName"
+                :color="accountItem.color"
+                :content="accountItem.name"
+                :left="(index % 4) > 1"
+                transition="slide-y-transition"
+              >
+                  <v-btn
+                    icon
+                    outlined
+                    fab
+                    @click="selectName(accountItem.name)"
+                    :class="`${accountItem.color}--text`"
+                  >
+                    <v-icon :class="`${accountItem.color}--text`">
+                      {{ accountItem.icon }}
                     </v-icon>
                   </v-btn>
               </v-badge>
@@ -87,8 +126,8 @@ export default {
     Keyboard
   },
   methods: {
-    selectCategory (category) {
-      this.selectedCategory = category
+    selectName (categoryOrAccount) {
+      this.selectedName = categoryOrAccount
       this.showKeyboard = true
     },
     close () {
@@ -100,8 +139,8 @@ export default {
 
       this.$store.dispatch('addPayment', {
         account: this.account,
-        category: this.selectedCategory,
-        type: this.selectIncome ? 'income' : 'spending',
+        category: this.selectedName,
+        type: this.selectedTransactionType,
         total: this.result
       })
       this.callbackSuccess()
@@ -110,8 +149,13 @@ export default {
   data () {
     return {
       showKeyboard: false,
-      selectedCategory: undefined,
-      selectIncome: false,
+      selectedName: 'please select',
+      selectedTransactionType: 'spending',
+      transactionTypes: [
+        { type: 'spending', color: 'red', icon: 'mdi-minus' },
+        { type: 'income', color: 'green', icon: 'mdi-plus' },
+        { type: 'transfer', color: 'blue', icon: 'mdi-bank-transfer' }
+      ],
       result: 0
     }
   },

@@ -25,7 +25,7 @@
             <v-btn :class="`${color}--text`" text @click="menu = false">
               Edit <v-icon>mdi-pen</v-icon>
             </v-btn>
-            <v-btn class="red--text" text @click="menu = false">
+            <v-btn class="red--text" text @click="removePayment">
               Remove <v-icon>mdi-delete</v-icon>
             </v-btn>
           </v-card-actions>
@@ -40,10 +40,25 @@ export default {
     name: String,
     icon: String,
     color: String,
+    account: String,
+    type: String,
     last: Number,
     time: Number,
     total: Number,
     enableMenu: Boolean
+  },
+  methods: {
+    removePayment () {
+      console.log(this.enableMenu, this.account, this.total)
+      if (!this.enableMenu || !this.account || !this.total || !this.time) return
+      this.$store.dispatch('removePayment', {
+        account: this.account,
+        category: this.name,
+        type: this.type,
+        total: this.total,
+        time: this.time
+      })
+    }
   },
   computed: {
     lastTransactionOrDate () {

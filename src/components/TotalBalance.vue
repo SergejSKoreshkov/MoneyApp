@@ -35,13 +35,13 @@ export default {
       return ' ' + this.$store.state.settings.currency
     },
     spendings () {
-      return Math.abs(this.$store.state.history.filter(el => el.type === 'spending').reduce((acc, el) => acc + el.total, 0))
+      return Math.abs(this.$store.getters.history.filter(el => el.type === 'spending').reduce((acc, el) => acc + el.total, 0))
     },
     income () {
-      return this.$store.state.history.filter(el => el.type === 'income').reduce((acc, el) => acc + el.total, 0)
+      return this.$store.getters.history.filter(el => el.type === 'income').reduce((acc, el) => acc + el.total, 0)
     },
     balance () {
-      return this.$store.state.history.reduce((acc, el) => acc + (el.type === 'spending' ? -el.total : el.total), 0)
+      return this.$store.getters.history.reduce((acc, el) => acc + (el.type !== 'transfer' ? (el.type === 'spending' ? -el.total : el.total) : 0), 0)
     }
   },
   methods: {

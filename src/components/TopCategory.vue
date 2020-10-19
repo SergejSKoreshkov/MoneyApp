@@ -34,10 +34,10 @@ export default {
   computed: {
     topCategories () {
       return mapHistoryToCategories(
-        this.$store.state.history,
+        this.$store.getters.history,
         this.$store.state.categories,
         {
-          limit: 7,
+          limit: 5,
           sort: 'asc'
         }
       )

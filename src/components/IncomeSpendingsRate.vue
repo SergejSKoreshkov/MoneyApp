@@ -23,6 +23,11 @@ const limits = [
 ]
 
 export default {
+  mounted () {
+    if (this.$vuetify.theme.dark) {
+      limits[2][1] = 'deep-purple lighten-2'
+    }
+  },
   computed: {
     incomeSpendingsRate () {
       const { total, max } = this.$store.state.balance

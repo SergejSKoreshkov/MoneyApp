@@ -64,7 +64,7 @@ export default {
       return this.show
     },
     balance () {
-      return this.$store.state.history.reduce((acc, el) => acc + (el.type === 'spending' ? -el.total : el.total), 0)
+      return this.$store.getters.history.reduce((acc, el) => acc + (el.type === 'spending' ? -el.total : el.total), 0)
     }
   },
   data () {
