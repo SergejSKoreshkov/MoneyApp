@@ -7,8 +7,8 @@
                 <v-text-field placeholder="Price" v-model="text" hide-details outlined disabled></v-text-field>
               </v-col>
               <v-col cols="3" v-for="btnItem in buttons" :key="btnItem.text">
-                  <v-btn @click="btnItem.action" v-show="btnItem.text" text class="w100 font-weight-bold mt-1 mb-1 text-h6">{{ btnItem.text }}</v-btn>
-                  <v-btn @click="btnItem.action" v-show="btnItem.icon" text class="w100 mt-1 mb-1 text-h6">
+                  <v-btn :ripple="false" @click="btnItem.action" v-if="btnItem.text" text class="w100 font-weight-bold mt-1 mb-1 text-h6 btn">{{ btnItem.text }}</v-btn>
+                  <v-btn :ripple="false" @click="btnItem.action" v-if="btnItem.icon" text class="w100 mt-1 mb-1 text-h6 btn">
                     <v-icon>{{ btnItem.icon }}</v-icon>
                   </v-btn>
               </v-col>
@@ -27,6 +27,7 @@ export default {
   },
   mounted () {
     this.height = this.$refs['keyboard-card']?.$el.getBoundingClientRect().height
+    console.log(this.height)
   },
   methods: {
     add (char) {
@@ -87,5 +88,8 @@ export default {
       width: 100%;
       display: block;
       position: relative;
+    }
+    .btn {
+      height: 42px !important;
     }
 </style>

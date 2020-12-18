@@ -6,7 +6,7 @@
         persistent
       >
         <v-card>
-          <v-card-title style="text-transform: capitalize;">{{ selectedTransactionType }}<v-icon>mdi-menu-right</v-icon>{{ selectedName }}</v-card-title>
+          <v-card-title style="text-transform: capitalize;">{{ selectedTransactionType }}: {{ account }}<v-icon>mdi-menu-right</v-icon>{{ selectedName }}</v-card-title>
           <v-row class="ma-0">
             <v-col cols="12" class="d-flex" style="justify-content: space-between;">
               <v-badge
@@ -97,16 +97,10 @@
             >
               Close
             </v-btn>
-            <v-btn
-              text
-              @click="confirm()"
-            >
-              Confirm
-            </v-btn>
           </v-card-actions>
         </v-card>
         <Keyboard
-          v-show="showKeyboard"
+          v-if="showKeyboard"
           :callbackSave="confirm"
         ></Keyboard>
       </v-dialog>
@@ -177,5 +171,8 @@ export default {
  }
  .v-badge__badge {
    z-index: 999;
+ }
+ .v-dialog {
+   box-shadow: none !important;
  }
 </style>
